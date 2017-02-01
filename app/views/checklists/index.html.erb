@@ -1,20 +1,23 @@
+<div class="container-fluid">
 <h1>Checklists for <%=@user.first_name%> <%=@user.last_name%></h1>
-<div>
-	<table>
+	<table class="table table-striped">
 		<th>Name</th>
 		<th>Description</th>
-		<th></th>
-		<th></th>
+		<th class="col-md-1"></th>
+		<th class="col-md-1"></th>
 		<% @checklists.each do |c| %>
 			<tr>
 				<td><%= c.name %></td>
 				<td><%= c.description %></td>
-				<td><%= link_to "Edit", edit_checklist_path(c.id)%></td>
+				<td><%= link_to "Edit", edit_checklist_path(c.id),
+						:class => "btn btn-info"%></td>
 				<td><%= link_to "Remove", checklist_path(c.id),
 						:method => :delete,
+						:class => "btn btn-danger",
 						data: {:confirm => "Are you sure?"}%></td>
 			</tr>
 		<% end %>
 	</table>
-	<%= link_to "Create Checklist", "checklists/new" %>
+	<%= link_to "Create Checklist", "checklists/new",
+		:class => "btn btn-primary"%>
 </div>

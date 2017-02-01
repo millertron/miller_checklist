@@ -1,11 +1,16 @@
+<div class="container-fluid">
 <%= form_for(:session, url: login_path) do |f| %>
+<div class="form-group">
 	<%= f.label :username%>
 	<br/>
-	<%= f.text_field :username, :place_holder => "Username" %>
+	<%= f.text_field :username, :place_holder => "Username", :class => "input" %>
 	<br/>
 	<%= f.label :password%>
 	<br/>
-	<%= f.password_field :password, :place_holder => "Password" %>
+	<%= f.password_field :password, :place_holder => "Password", :class => "input" %>
 	<br/>
-	<%=f.submit "Login" %>
+</div>
+<%=f.submit "Login", :class=>"btn btn-default"%>
+
 <% end %>
+</div>
