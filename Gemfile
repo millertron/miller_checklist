@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # run 'gem install bcrypt --platform=ruby' manually
 gem 'bcrypt', '~> 3.1.11'
 
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
