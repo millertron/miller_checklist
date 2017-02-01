@@ -9,6 +9,8 @@
   </head>
 
   <body>
+	<%= render :file=>"/layouts/header.html.erb" %> 
     <%= yield %>
+	<%= render :file=>"/layouts/footer.html.erb" %>
   </body>
 </html>
