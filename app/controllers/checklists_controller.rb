@@ -3,7 +3,7 @@ class ChecklistsController < ApplicationController
 	
 	def index
 		@user = current_user
-		@checklists = Checklist.all
+		@checklists = Checklist.where(owner_id: @user.id)
 	end
 	
 	def new
@@ -13,6 +13,7 @@ class ChecklistsController < ApplicationController
 	
 	def create
 		@checklist = Checklist.new(checklist_params)
+		@checklist.owner_id = current_user.id
 		puts "New Checklist: "
 		puts "Name: #{@checklist.name}"
 		puts "Description: #{@checklist.description}"
@@ -43,6 +44,6 @@ class ChecklistsController < ApplicationController
 	private
 	def checklist_params
 		
-		params.require(:checklist).permit(:name, :description, {:owner_id=>User.first.id})
+		params.require(:checklist).permit(:name, :description)
 	end
 end
