@@ -14,12 +14,7 @@ class ChecklistsController < ApplicationController
 	def create
 		@checklist = Checklist.new(checklist_params)
 		@checklist.owner_id = current_user.id
-		puts "New Checklist: "
-		puts "Name: #{@checklist.name}"
-		puts "Description: #{@checklist.description}"
-		puts "Owner: #{@checklist.owner_id}"
 		if @checklist.save then
-			puts "Save checklist!"
 			redirect_to checklists_path
 		end
 	end
