@@ -2,12 +2,12 @@ class ChecklistsController < ApplicationController
 	before_action :require_user
 	
 	def index
-		@user = User.first
+		@user = current_user
 		@checklists = Checklist.all
 	end
 	
 	def new
-		@user = User.first
+		@user = current_user
 		@checklist = Checklist.new
 	end
 	
@@ -24,7 +24,7 @@ class ChecklistsController < ApplicationController
 	end
 	
 	def edit
-		@user = User.first
+		@user = current_user
 		@checklist = Checklist.find(params[:id])
 	end
 	
