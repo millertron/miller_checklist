@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 		session[:user_id] = @user.id
 		redirect_to checklists_path
 	else
-		redirect_to '/login'
+		redirect_to login_path, :flash=>{ :danger => "Failed to log in with credentials provided."}
 	end
   end
   
