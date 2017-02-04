@@ -1,6 +1,8 @@
 class ChecklistsController < ApplicationController
 	before_action :require_user
 	
+	@@frequency_options = [:daily, :weekly, :monthly]
+	
 	def index
 		@user = current_user
 		@checklists = Checklist.where(owner_id: @user.id)
@@ -9,6 +11,7 @@ class ChecklistsController < ApplicationController
 	def new
 		@user = current_user
 		@checklist = Checklist.new
+		@frequency_options = @@frequency_options
 	end
 	
 	def create
@@ -22,6 +25,7 @@ class ChecklistsController < ApplicationController
 	def edit
 		@user = current_user
 		@checklist = Checklist.find(params[:id])
+		@frequency_options = @@frequency_options
 	end
 	
 	def update
@@ -39,6 +43,6 @@ class ChecklistsController < ApplicationController
 	private
 	def checklist_params
 		
-		params.require(:checklist).permit(:name, :description)
+		params.require(:checklist).permit(:name, :description, :frequency)
 	end
 end

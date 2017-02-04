@@ -3,12 +3,14 @@
 	<table class="table table-striped">
 		<th class="col-md-2">Name</th>
 		<th>Description</th>
+		<th class="col-md-1">Target Frequency</th>
 		<th class="col-md-1"></th>
 		<th class="col-md-1"></th>
 		<% @checklists.each do |c| %>
 			<tr>
 				<td><%= c.name %></td>
 				<td><%= c.description %></td>
+				<td><%= c.frequency.capitalize %></td>
 				<td><%= link_to "Edit", edit_checklist_path(c.id),
 						:class => "btn btn-info"%></td>
 				<td><%= link_to "Remove", checklist_path(c.id),
