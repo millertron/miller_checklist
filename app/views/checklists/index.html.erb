@@ -1,5 +1,27 @@
+<% if @daily_checklists.any? %>
+	<h2>Checklists to complete today</h2>
+	<ul>
+	<% @daily_checklists.each do |dc| %>
+		<li><%= dc.name %></li>
+	<% end %>
+	</ul>
+<% end %>
 
-<h1>Checklists for <%=@user.first_name%> <%=@user.last_name%></h1>
+<% if @weekly_checklists.any? %>
+<h2>Checklists to complete this week</h2>
+	<ul>
+	<% @weekly_checklists.each do |dc| %>
+		<li><%= dc.name %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+<% if @monthly_checklists.any? %>
+<h2>Checklists to complete this month</h2>
+
+<% end %>
+
+<h2>Checklists for <%=@user.first_name%> <%=@user.last_name%></h2>
 	<table class="table table-striped">
 		<th class="col-md-2">Name</th>
 		<th>Description</th>

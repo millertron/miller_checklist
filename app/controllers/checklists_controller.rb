@@ -6,7 +6,13 @@ class ChecklistsController < ApplicationController
 	
 	def index
 		@user = current_user
+		
+		@daily_checklists = Checklist.where(owner_id: @user, frequency: :daily)
+		@weekly_checklists = Checklist.where(owner_id: @user, frequency: :weekly)
+		@monthly_checklists = Checklist.where(owner_id: @user, frequency: :monthly)
+		
 		@checklists = Checklist.where(owner_id: @user.id)
+		
 	end
 	
 	def new
