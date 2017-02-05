@@ -2,6 +2,7 @@ class ChecklistsController < ApplicationController
 	before_action :require_user
 	
 	@@frequency_options = [:daily, :weekly, :monthly]
+	@@value_type_options = [:binary]
 	
 	def index
 		@user = current_user
@@ -12,6 +13,8 @@ class ChecklistsController < ApplicationController
 		@user = current_user
 		@checklist = Checklist.new
 		@frequency_options = @@frequency_options
+		@value_type_options = @@value_type_options
+		@checklist.checklist_items << ChecklistItem.new
 	end
 	
 	def create
@@ -26,6 +29,7 @@ class ChecklistsController < ApplicationController
 		@user = current_user
 		@checklist = Checklist.find(params[:id])
 		@frequency_options = @@frequency_options
+		@value_type_options = @@value_type_options
 	end
 	
 	def update
@@ -41,8 +45,7 @@ class ChecklistsController < ApplicationController
 	end
 	
 	private
-	def checklist_params
-		
-		params.require(:checklist).permit(:name, :description, :frequency)
+	def checklist_params	
+		params.require(:checklist).permit(:name, :description, :frequency, :checklist_items_attributes => [:id, :text, :value_type])
 	end
 end

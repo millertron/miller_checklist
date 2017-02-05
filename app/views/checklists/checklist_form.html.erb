@@ -12,6 +12,19 @@
 		<%= f.label :frequency, "Target Frequency"%>
 		<%= f.select :frequency, @frequency_options, {}, {:class=>"form-control"}%>
 		<div/>
+		<br/>
+		<h4>Checklist Item</h4>
+		<%= f.fields_for :checklist_items do |i_f| %>
+			<div class="form-group">
+				<%= i_f.label :text %>
+				<%= i_f.text_field :text, :class=>"form-control" %>
+			</div>
+			<div class="form-group">
+				<%= i_f.label :value_type %>
+				<%= i_f.select :value_type, @value_type_options, {}, {:class=>"form-control"}%>
+			</div>
+		<% end %>
+		
 		<%= f.submit :class=>"btn btn-default"%>
 	<% end %>
 </div>
