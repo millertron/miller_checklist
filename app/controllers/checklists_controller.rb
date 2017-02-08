@@ -9,9 +9,11 @@ class ChecklistsController < ApplicationController
 		
 		@daily_checklists = Checklist.where(owner_id: @user, frequency: :daily)
 		@daily_checklists.each do |dc|
-			if (Implementation.where(checklist_id: dc.id, implemented_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day))
+			puts "Implemented? :#{dc.is_implemented?}"
+			if (!Implementation.where(checklist_id: dc.id, implemented_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).empty?)
 				dc.implemented = true
 			end
+			puts "Implemented now? :#{dc.is_implemented?}"
 		end
 		
 		@weekly_checklists = Checklist.where(owner_id: @user, frequency: :weekly)

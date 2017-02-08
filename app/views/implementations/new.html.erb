@@ -1,9 +1,15 @@
 <div>
 	<%= form_for(@implementation) do |f| %>
 		<%= f.hidden_field :checklist_id, :value=>@checklist.id%>
+		<%= f.fields_for :implementation_items do |i_f| %>
 		<div class="form-group">
-		<%= f.label nil, @checklist_item.text%>
+			<%= i_f.hidden_field :text, :value=>@checklist.checklist_items[i_f.index].text%>
+			<% if @checklist_items[i_f.index].value_type == "binary"%>
+				<%= i_f.label :binary_value, @checklist_items[i_f.index].text%>
+				<%= i_f.check_box :binary_value %>
+			<% end %>
 		</div>
+		<% end %>
 		<%= f.submit "Complete checklist", :class=>"btn btn-default" %>
 	<% end %>
 </div>
