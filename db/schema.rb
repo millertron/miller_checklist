@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208133934) do
+ActiveRecord::Schema.define(version: 20170208144401) do
 
   create_table "checklist_items", force: :cascade do |t|
     t.integer  "checklist_id"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(version: 20170208133934) do
     t.boolean  "binary_value"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "metric_value"
+    t.string   "metric_target_max"
+    t.string   "metric_target_min"
     t.index ["implementation_id"], name: "index_implementation_items_on_implementation_id"
   end
 

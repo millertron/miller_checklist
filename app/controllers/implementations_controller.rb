@@ -22,7 +22,7 @@ class ImplementationsController < ApplicationController
 
 	private
 	def implementation_params
-		params.required(:implementation).permit(:checklist_id, :implementation_items_attributes => [:text, :binary_value])
+		params.required(:implementation).permit(:checklist_id, :implementation_items_attributes => [:text, :binary_value, :metric_value, :metric_target_max, :metric_target_min])
 	end
 	
 end

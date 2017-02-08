@@ -5,8 +5,14 @@
 		<div class="form-group">
 			<%= i_f.hidden_field :text, :value=>@checklist.checklist_items[i_f.index].text%>
 			<% if @checklist_items[i_f.index].value_type == "binary"%>
-				<%= i_f.label :binary_value, @checklist_items[i_f.index].text%>
 				<%= i_f.check_box :binary_value %>
+				<%= i_f.label :binary_value, @checklist_items[i_f.index].text%>
+			<% end %>
+			<% if @checklist_items[i_f.index].value_type == "metric"%>
+				<%= i_f.label :metric_value, @checklist_items[i_f.index].text%>
+				<%= i_f.number_field :metric_value, :class=>"form-control", step: :any %>
+				<%= i_f.hidden_field :metric_target_max, :value=>@checklist_items[i_f.index].metric_target_max %>
+				<%= i_f.hidden_field :metric_target_min, :value=>@checklist_items[i_f.index].metric_target_min %>
 			<% end %>
 		</div>
 		<% end %>
