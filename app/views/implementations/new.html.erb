@@ -1,4 +1,5 @@
 <div>
+	<h3><%= @checklist.name %></h3>
 	<%= form_for(@implementation) do |f| %>
 		<%= f.hidden_field :checklist_id, :value=>@checklist.id%>
 		<%= f.fields_for :implementation_items do |i_f| %>
