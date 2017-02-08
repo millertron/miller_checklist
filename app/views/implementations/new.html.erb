@@ -1,0 +1,9 @@
+<div>
+	<%= form_for(@implementation) do |f| %>
+		<%= f.hidden_field :checklist_id, :value=>@checklist.id%>
+		<div class="form-group">
+		<%= f.label nil, @checklist_item.text%>
+		</div>
+		<%= f.submit "Complete checklist", :class=>"btn btn-default" %>
+	<% end %>
+</div>
