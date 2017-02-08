@@ -5,6 +5,9 @@
 		</div>
 		<% @daily_checklists.each do |dc| %>
 			<div class="panel-body">
+				<% if dc.is_implemented? %>
+					<button class="btn btn-success"><%=dc.name%><span class="glyphicon glyphicon-ok"></span></button>
+				<%else%>
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
 						<%=dc.name%></button>
@@ -12,6 +15,7 @@
 						<li><%=link_to  "Implement this checklist", new_implementation_path(:checklist_id => dc.id) %></li>
 					</ul>
 				</div>
+				<%end%>
 			</div>
 		<% end %>
 	</div>

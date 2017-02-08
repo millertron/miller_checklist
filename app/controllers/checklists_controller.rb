@@ -8,6 +8,12 @@ class ChecklistsController < ApplicationController
 		@user = current_user
 		
 		@daily_checklists = Checklist.where(owner_id: @user, frequency: :daily)
+		@daily_checklists.each do |dc|
+			if (Implementation.where(checklist_id: dc.id, implemented_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day))
+				dc.implemented = true
+			end
+		end
+		
 		@weekly_checklists = Checklist.where(owner_id: @user, frequency: :weekly)
 		@monthly_checklists = Checklist.where(owner_id: @user, frequency: :monthly)
 		
