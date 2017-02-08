@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208112430) do
+ActiveRecord::Schema.define(version: 20170208133934) do
 
   create_table "checklist_items", force: :cascade do |t|
     t.integer  "checklist_id"
     t.string   "text"
     t.string   "value_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "metric_target_max"
+    t.string   "metric_target_min"
     t.index ["checklist_id"], name: "index_checklist_items_on_checklist_id"
   end
 

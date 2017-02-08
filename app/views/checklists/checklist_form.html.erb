@@ -1,3 +1,34 @@
+<script type="text/javascript">
+	function updateAdditionalFieldsForValueType(index){
+		var valueTypeField = $("#checklist_checklist_items_attributes_"+index+"_value_type");
+		if (!valueTypeField || !valueTypeField[0]){
+			return false;
+		}
+		if (valueTypeField.val() == "metric"){
+			$("#metricFieldForms").css('display', '');
+		} else {
+			$("#metricFieldForms").css('display', 'none');
+			$("#checklist_checklist_items_attributes_"+index+"_metric_target_max").val('');
+			$("#checklist_checklist_items_attributes_"+index+"_metric_target_min").val('');
+		}
+		return true;
+	}
+
+	$(document).ready(function(){
+		console.log("Ready!");
+		var checklistItem = true;
+		var checklistItemCount = 0;
+		while (checklistItem){
+			if (updateAdditionalFieldsForValueType(checklistItemCount)) {
+				checklistItemCount++;
+			} else{
+				checklistItem = false;
+			}
+		}
+	});
+	
+</script>
+
 <div>
 	<%= form_for(@checklist) do |f| %>
 		<div class="form-group">
@@ -15,14 +46,25 @@
 		<br/>
 		<h4>Checklist Item</h4>
 		<%= f.fields_for :checklist_items do |i_f| %>
+			<% @checklist_item = i_f.object %>
 			<div class="form-group">
 				<%= i_f.label :text %>
 				<%= i_f.text_field :text, :class=>"form-control" %>
 			</div>
 			<div class="form-group">
 				<%= i_f.label :value_type %>
-				<%= i_f.select :value_type, @value_type_options, {}, {:class=>"form-control"}%>
+				<%= i_f.select :value_type, @value_type_options, {}, {:onChange=>"updateAdditionalFieldsForValueType(#{i_f.index});", :class=>"form-control"}%>
 			</div>
+			<div id="metricFieldForms">
+				<div class="form-group">
+					<%= i_f.label :metric_target_max, "Target upper limit" %>
+					<%= i_f.number_field :metric_target_max, :class=>"form-control", step: :any%>
+				</div>
+				<div class="form-group">
+					<%= i_f.label :metric_target_min, "Target lower limit" %>
+					<%= i_f.number_field :metric_target_min, :class=>"form-control", step: :any%>
+				</div>
+			<div />
 		<% end %>
 		
 		<%= f.submit :class=>"btn btn-default"%>

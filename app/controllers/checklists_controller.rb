@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
 	before_action :require_user
 	
 	@@frequency_options = [:daily, :weekly, :monthly]
-	@@value_type_options = [:binary]
+	@@value_type_options = [:binary, :metric]
 	
 	def index
 		@user = current_user
@@ -70,6 +70,6 @@ class ChecklistsController < ApplicationController
 	
 	private
 	def checklist_params	
-		params.require(:checklist).permit(:name, :description, :frequency, :checklist_items_attributes => [:id, :text, :value_type])
+		params.require(:checklist).permit(:name, :description, :frequency, :checklist_items_attributes => [:id, :text, :value_type, :metric_target_max, :metric_target_min])
 	end
 end
