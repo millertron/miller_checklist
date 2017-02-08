@@ -3,21 +3,8 @@
 		<div class="panel-heading">
 			<h4>Checklists to complete today</h4>
 		</div>
-		<% @daily_checklists.each do |dc| %>
-			<div class="panel-body">
-				<% if dc.is_implemented? %>
-					<button class="btn btn-success"><%=dc.name%><span class="glyphicon glyphicon-ok"></span></button>
-				<%else%>
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-						<%=dc.name%></button>
-					<ul class="dropdown-menu">
-						<li><%=link_to  "Implement this checklist", new_implementation_path(:checklist_id => dc.id) %></li>
-					</ul>
-				</div>
-				<%end%>
-			</div>
-		<% end %>
+		<% @dashboard_checklists = @daily_checklists %>
+		<%= render :file=>"checklists/dashboard_checklists.html.erb" %>
 	</div>
 <% end %>
 
@@ -26,9 +13,8 @@
 		<div class="panel-heading">
 			<h4>Checklists to complete this week</h4>
 		</div>
-		<% @weekly_checklists.each do |dc| %>
-			<div class="panel-body"><%= dc.name %></div>
-		<% end %>
+		<% @dashboard_checklists = @weekly_checklists %>
+		<%= render :file=>"checklists/dashboard_checklists.html.erb" %>
 	</div>
 <% end %>
 
@@ -37,9 +23,8 @@
 		<div class="panel-heading">
 			<h4>Checklists to complete this month</h4>
 		</div>
-		<% @monthly_checklists.each do |dc| %>
-			<div class="panel-body"><%= dc.name %></div>
-		<% end %>
+		<% @dashboard_checklists = @monthly_checklists %>
+		<%= render :file=>"checklists/dashboard_checklists.html.erb" %>
 	</div>
 <% end %>
 
