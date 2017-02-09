@@ -70,6 +70,6 @@ class ChecklistsController < ApplicationController
 	
 	private
 	def checklist_params	
-		params.require(:checklist).permit(:name, :description, :frequency, :checklist_items_attributes => [:id, :text, :value_type, :metric_target_max, :metric_target_min])
+		params.require(:checklist).permit(:name, :description, :frequency, :checklist_items_attributes => [:id, :text, :value_type, :mandatory, :metric_target_max, :metric_target_min])
 	end
 end

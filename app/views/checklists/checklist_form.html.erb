@@ -47,6 +47,7 @@
 		<h4>Checklist Item</h4>
 		<%= f.fields_for :checklist_items do |i_f| %>
 			<% @checklist_item = i_f.object %>
+			<%= i_f.hidden_field :mandatory, :value=> true %>
 			<div class="form-group">
 				<%= i_f.label :text %>
 				<%= i_f.text_field :text, :class=>"form-control" %>
