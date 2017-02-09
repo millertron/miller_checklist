@@ -29,27 +29,33 @@
 	});
 </script>
 <div>
-	<h3><%= @checklist.name %></h3>
 	<%= form_for(@implementation) do |f| %>
-		<%= f.hidden_field :checklist_id, :value=>@checklist.id%>
-		<%= f.fields_for :implementation_items do |i_f| %>
-		<div class="form-group">
-			<%= i_f.hidden_field :text, :value=>@checklist.checklist_items[i_f.index].text%>
-			<% @input_class = @checklist_items[i_f.index].mandatory ? "mandatory" : "" %>
-			<% if @checklist_items[i_f.index].value_type == "binary"%>
-				<%= i_f.check_box :binary_value, :class=>@input_class, 
-					:onclick=>"checkSubmitReady();" %>
-				<%= i_f.label :binary_value, @checklist_items[i_f.index].text%>
+		<div class="panel panel-default">
+		<div class="panel-heading"><h4><%= @checklist.name %></h4></div>
+			<%= f.hidden_field :checklist_id, :value=>@checklist.id%>
+			<%= f.fields_for :implementation_items do |i_f| %>
+				<div class="panel-body">
+					<div class="form-group">
+						<%= i_f.hidden_field :text, :value=>@checklist.checklist_items[i_f.index].text%>
+						<% @input_class = @checklist_items[i_f.index].mandatory ? "mandatory" : "" %>
+						<% if @checklist_items[i_f.index].value_type == "binary"%>
+							<%= i_f.check_box :binary_value, :class=>@input_class, 
+								:onclick=>"checkSubmitReady();" %>
+							<%= i_f.label :binary_value, @checklist_items[i_f.index].text%>
+						<% end %>
+						<% if @checklist_items[i_f.index].value_type == "metric"%>
+							<%= i_f.label :metric_value, @checklist_items[i_f.index].text%>
+							<%= i_f.number_field :metric_value, :class=>"form-control #{@input_class}", step: :any, 
+								:onkeyup=>"checkSubmitReady();"  %>
+							<%= i_f.hidden_field :metric_target_max, :value=>@checklist_items[i_f.index].metric_target_max %>
+							<%= i_f.hidden_field :metric_target_min, :value=>@checklist_items[i_f.index].metric_target_min %>
+						<% end %>
+					</div>
+				</div>
 			<% end %>
-			<% if @checklist_items[i_f.index].value_type == "metric"%>
-				<%= i_f.label :metric_value, @checklist_items[i_f.index].text%>
-				<%= i_f.number_field :metric_value, :class=>"form-control #{@input_class}", step: :any, 
-					:onkeyup=>"checkSubmitReady();"  %>
-				<%= i_f.hidden_field :metric_target_max, :value=>@checklist_items[i_f.index].metric_target_max %>
-				<%= i_f.hidden_field :metric_target_min, :value=>@checklist_items[i_f.index].metric_target_min %>
-			<% end %>
+			<div class="panel-body">
+				<%= f.submit "Complete checklist", :class=>"btn btn-default submit-checklist" %>
+			</div>
 		</div>
-		<% end %>
-		<%= f.submit "Complete checklist", :class=>"btn btn-default submit-checklist" %>
 	<% end %>
 </div>
