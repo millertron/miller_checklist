@@ -2,7 +2,7 @@
 <nav class="navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<%= link_to "MUTEX", nil, :class=>"navbar-brand" %> 
+			<div class="navbar-brand">MUTEX</div>
 		</div>
 	
 		<% unless @login_page %>
@@ -10,7 +10,12 @@
 			<ul class="nav navbar-nav">
 				<li><%= link_to "Dashboard", root_path %></li>
 				<li><%= link_to "Analytics", nil %></li>
-				<li><%= link_to "Admin", nil %></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">Admin</a>
+					<ul class="dropdown-menu">
+					<li><%= link_to "Configure Form Options", form_options_path %></li>
+					</ul>
+				</li>
 			</ul>
 		
 			<ul class="nav navbar-right navbar-nav">
