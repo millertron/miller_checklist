@@ -1,0 +1,14 @@
+<div>
+	<%= form_for(@form_option) do |f| %>
+		<div class="form-group">
+			<%= f.label :context %>
+			<%= f.text_field :context, :class=>"form-control"%>
+		</div>
+		<div class="form-group">
+			<%= f.label :text_value %>
+			<%= f.text_field :text_value, :class=>"form-control"%>
+		</div>
+		<%= f.submit "Add form option", :class=>"btn btn-default submit-checklist" %>
+
+	<% end %>
+</div>

@@ -12,5 +12,8 @@ Rails.application.routes.draw do
 	get '/signup', to: 'users#new'
 	resources :users
 	
+	get '/form_options', to: 'form_options#index'
+	post '/form_options', to: 'form_options#create'
+	
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
