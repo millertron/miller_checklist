@@ -2,10 +2,17 @@
 <nav class="navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<%= link_to "Miller Checklist", root_path, :class=>"navbar-brand" %> 
+			<%= link_to "Miller Checklist", nil, :class=>"navbar-brand" %> 
 		</div>
 	
 		<% unless @login_page %>
+		
+			<ul class="nav navbar-nav">
+				<li><%= link_to "Dashboard", root_path %></li>
+				<li><%= link_to "Analytics", nil %></li>
+				<li><%= link_to "Admin", nil %></li>
+			</ul>
+		
 			<ul class="nav navbar-right navbar-nav">
 				<% if current_user %>
 					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
