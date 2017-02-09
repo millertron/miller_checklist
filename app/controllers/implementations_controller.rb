@@ -14,7 +14,6 @@ class ImplementationsController < ApplicationController
 	def create
 		@implementation = Implementation.new(implementation_params)
 		@implementation.implemented_date = DateTime.now
-		puts "DID Date work??? #{@implementation.implemented_date} ::: #{DateTime.new}"
 		if @implementation.save
 			redirect_to root_path
 		end
