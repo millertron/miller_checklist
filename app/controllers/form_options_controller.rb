@@ -1,6 +1,8 @@
 class FormOptionsController < ApplicationController
+	
 	def index
 		@form_option = FormOption.new
+		@context_list = FormOption.distinct.pluck(:context)
 	end
 	
 	def create
