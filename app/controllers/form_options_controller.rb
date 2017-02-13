@@ -12,6 +12,12 @@ class FormOptionsController < ApplicationController
 		end
 	end
 	
+	def ajax
+		respond_to do |format|
+			format.json { render json: { data: "Server response 66!" }, status: :success }
+		end
+	end
+	
 	private
 	def form_option_params
 		params.require(:form_option).permit(:context, :text_value, :seq)

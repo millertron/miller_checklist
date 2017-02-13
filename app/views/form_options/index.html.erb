@@ -1,7 +1,39 @@
 <script type="text/javascript">
+
+	var sendAjax = function(){
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: "/form_options/ajax",
+			dataType: "json",
+			cache: false,
+			success: function (result) {
+				//do somthing here
+				window.alert("success!!");
+			},
+			error: function (){
+				window.alert("something wrong!");
+			}
+		});
+	};
+
 	$(document).ready(function(){
+		var select = false;
 		$("#form_option_context").autocomplete({
-			source: <%= (raw @context_list.to_json) %>
+			source: <%= (raw @context_list.to_json) %>,
+			change: function( event, ui){
+				if (!select){
+					//console.log("Autocomplete change!");
+					sendAjax();
+				} else{
+					select = false;
+				}
+			},
+			select: function(e, ui){
+				//console.log("Autocomplete select!");
+				sendAjax();
+				select = true;
+			}
 		});
 	});
 </script>
@@ -21,4 +53,8 @@
 		<%= f.submit "Add form option", :class=>"btn btn-default submit-checklist" %>
 
 	<% end %>
+	
+	<div id="form_options_table">
+	
+	</div>
 </div>
