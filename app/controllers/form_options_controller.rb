@@ -14,7 +14,7 @@ class FormOptionsController < ApplicationController
 	
 	def ajax
 		respond_to do |format|
-			format.json { render json: { data: "Server response 66!" }, status: :success }
+			format.json { render json: { data: "Server response 66!" }, status: :ok }
 		end
 	end
 	
