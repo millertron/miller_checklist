@@ -9,7 +9,7 @@ MUTEX = {
 		
 		},
 		index: function() {
-			console.log("Checklist Index loaded!");
+
 		}
 	},
 	
