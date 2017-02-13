@@ -39,5 +39,5 @@ UTIL = {
 	} 
 };
  
-$( document ).ready( UTIL.init );
+$( document ).on("turbolinks:load", UTIL.init );
  
