@@ -1,33 +1,3 @@
-<script type="text/javascript">
-	function updateAdditionalFieldsForValueType(index){
-		var valueTypeField = $("#checklist_checklist_items_attributes_"+index+"_value_type");
-		if (!valueTypeField || !valueTypeField[0]){
-			return false;
-		}
-		if (valueTypeField.val() == "metric"){
-			$("#metricFieldForms").css('display', '');
-		} else {
-			$("#metricFieldForms").css('display', 'none');
-			$("#checklist_checklist_items_attributes_"+index+"_metric_target_max").val('');
-			$("#checklist_checklist_items_attributes_"+index+"_metric_target_min").val('');
-		}
-		return true;
-	}
-
-	$(document).ready(function(){
-		var checklistItem = true;
-		var checklistItemCount = 0;
-		while (checklistItem){
-			if (updateAdditionalFieldsForValueType(checklistItemCount)) {
-				checklistItemCount++;
-			} else{
-				checklistItem = false;
-			}
-		}
-	});
-	
-</script>
-
 <div>
 	<%= form_for(@checklist) do |f| %>
 		<div class="form-group">

@@ -1,3 +1,4 @@
+// Garber-Irish Implementation of JS execution on DOM load
 MUTEX = {
 	common : { 
 		init: function() {
@@ -10,6 +11,12 @@ MUTEX = {
 		},
 		index: function() {
 
+		},
+		new: function() {
+			checklist_form();
+		},
+		edit: function() {
+			checklist_form();
 		}
 	},
 	
@@ -38,6 +45,7 @@ UTIL = {
 		UTIL.exec( controller, action );
 	} 
 };
- 
+
+//Use instead of $(document).ready
 $( document ).on("turbolinks:load", UTIL.init );
  
