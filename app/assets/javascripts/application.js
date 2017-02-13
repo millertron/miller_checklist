@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/widgets/autocomplete
 //= require turbolinks
 //= require bootstrap
+//= require jquery-ui-bootstrap
 
 //= require mutex-forms
 //= require mutex
