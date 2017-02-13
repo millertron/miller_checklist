@@ -1,33 +1,3 @@
-<script type="text/javascript">
-	
-	var checkSubmitReady = function(){
-		var submitReady = true;
-		$("input:checkbox.mandatory").each(function(){
-			if (!$(this).prop("checked")==true){
-				submitReady = false;
-			}
-		});
-		$("input:text.mandatory").each(function(){
-			if (!$(this).val()){
-				submitReady = false;
-			}
-		});
-		$("input[type='number'].mandatory").each(function(){
-			if (!$(this).val()){
-				submitReady = false;
-			}
-		});
-		if (submitReady){
-			$("input:submit.submit-checklist").prop('disabled', false);
-		} else {
-			$("input:submit.submit-checklist").prop('disabled', true);
-		}
-	};
-	
-	$(document).ready(function(){
-		checkSubmitReady();
-	});
-</script>
 <div>
 	<%= form_for(@implementation) do |f| %>
 		<div class="panel panel-default">
@@ -40,13 +10,13 @@
 						<% @input_class = @checklist_items[i_f.index].mandatory ? "mandatory" : "" %>
 						<% if @checklist_items[i_f.index].value_type == "binary"%>
 							<%= i_f.check_box :binary_value, :class=>@input_class, 
-								:onclick=>"checkSubmitReady();" %>
+								:onclick=>"checkSubmitReady('mandatory', 'submit-checklist');" %>
 							<%= i_f.label :binary_value, @checklist_items[i_f.index].text%>
 						<% end %>
 						<% if @checklist_items[i_f.index].value_type == "metric"%>
 							<%= i_f.label :metric_value, @checklist_items[i_f.index].text%>
 							<%= i_f.number_field :metric_value, :class=>"form-control #{@input_class}", step: :any, 
-								:onkeyup=>"checkSubmitReady();"  %>
+								:onkeyup=>"checkSubmitReady('mandatory', 'submit-checklist');"  %>
 							<%= i_f.hidden_field :metric_target_max, :value=>@checklist_items[i_f.index].metric_target_max %>
 							<%= i_f.hidden_field :metric_target_min, :value=>@checklist_items[i_f.index].metric_target_min %>
 						<% end %>
