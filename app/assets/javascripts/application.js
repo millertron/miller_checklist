@@ -15,5 +15,7 @@
 //= require jquery-ui/widgets/autocomplete
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+
+//= require mutex-forms
+//= require mutex
 

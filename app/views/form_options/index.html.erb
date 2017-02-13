@@ -2,7 +2,7 @@
 	$(document).ready(function(){
 		$("#form_option_context").autocomplete({
 			source: <%= (raw @context_list.to_json) %>
-		})
+		});
 	});
 </script>
 <div>
