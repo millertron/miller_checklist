@@ -22,16 +22,11 @@
 		$("#form_option_context").autocomplete({
 			source: <%= (raw @context_list.to_json) %>,
 			change: function( event, ui){
-				if (!select){
-					$("#form_options_table").html("");
-					retrieveAndDisplayFormOptionsForContext($("#form_option_context").val());
-				} else{
-					select = false;
-				}
+				$("#form_options_table").html("");
+				retrieveAndDisplayFormOptionsForContext($("#form_option_context").val());
 			},
 			select: function(e, ui){
-				retrieveAndDisplayFormOptionsForContext(ui.item.value);
-				select = true;
+				$("#form_option_context").blur();
 			}
 		});
 	});
@@ -52,6 +47,8 @@
 		<%= f.submit "Add form option", :class=>"btn btn-default submit-checklist" %>
 
 	<% end %>
+	
+	<br/>
 	
 	<div id="form_options_table">
 	
