@@ -1,4 +1,5 @@
 class ImplementationsController < ApplicationController
+	before_action :require_user
 
 	def new
 		@checklist = Checklist.find_by_id(params[:checklist_id])
@@ -14,6 +15,7 @@ class ImplementationsController < ApplicationController
 	def create
 		@implementation = Implementation.new(implementation_params)
 		@implementation.implemented_date = DateTime.now
+		@implementation.implementor = current_user
 		if @implementation.save
 			redirect_to root_path
 		end

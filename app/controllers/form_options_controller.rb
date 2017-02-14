@@ -1,4 +1,5 @@
 class FormOptionsController < ApplicationController
+	before_action :require_user
 	
 	def index
 		@form_option = FormOption.new
