@@ -3,13 +3,17 @@ class FormOptionsController < ApplicationController
 	
 	def index
 		@form_option = FormOption.new
+		@default_context = nil
 		@context_list = FormOption.distinct.pluck(:context)
 	end
 	
 	def create
 		@form_option = FormOption.new(form_option_params)
 		if (@form_option.save)
-			redirect_to root_path
+			@default_context = @form_option.context
+			@form_options = FormOption.where(context: @default_context)
+			
+			render :partial => "form_options_table"
 		end
 	end
 	

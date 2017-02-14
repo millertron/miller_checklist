@@ -23,8 +23,8 @@
 			source: <%= (raw @context_list.to_json) %>,
 			change: function( event, ui){
 				if (!select){
-				$("#form_options_table").html("");
-					retrieveAndDisplayFormOptionsForContext($("form_options_context").val());
+					$("#form_options_table").html("");
+					retrieveAndDisplayFormOptionsForContext($("#form_option_context").val());
 				} else {
 					select = false;
 				}
@@ -36,22 +36,26 @@
 			}
 		});
 		
+		$('#new_form_option').bind('ajax:success', function() {  
+			$("#form_option_text_value").val("");
+			retrieveAndDisplayFormOptionsForContext($("#form_option_context").val());
+		});
 	});
 </script>
 <div>
-	<%= form_for(@form_option) do |f| %>
+	<%= form_for @form_option, :remote => true do |f| %>
 		
 		<div class="form-group">
 			<div>
 				<%= f.label :context %>
-				<%= f.text_field :context, :class=>"form-control"%>
+				<%= f.text_field :context, :class=>"form-control", value: @default_context%>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :text_value %>
 			<%= f.text_field :text_value, :class=>"form-control"%>
 		</div>
-		<%= f.submit "Add form option", :class=>"btn btn-default submit-checklist" %>
+		<%= f.submit "Add form option", :class=>"btn btn-default submit-form_option" %>
 
 	<% end %>
 	
