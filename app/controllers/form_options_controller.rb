@@ -20,6 +20,10 @@ class FormOptionsController < ApplicationController
 		render :partial => "form_options_table"
 	end
 	
+	def destroy
+		FormOption.find(params[:id]).destroy
+	end
+	
 	private
 	def form_option_params
 		params.require(:form_option).permit(:context, :text_value, :seq)

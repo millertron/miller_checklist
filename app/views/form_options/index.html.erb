@@ -22,13 +22,20 @@
 		$("#form_option_context").autocomplete({
 			source: <%= (raw @context_list.to_json) %>,
 			change: function( event, ui){
+				if (!select){
 				$("#form_options_table").html("");
-				retrieveAndDisplayFormOptionsForContext($("#form_option_context").val());
+					retrieveAndDisplayFormOptionsForContext($("form_options_context").val());
+				} else {
+					select = false;
+				}
 			},
 			select: function(e, ui){
+				retrieveAndDisplayFormOptionsForContext(ui.item.value);
+				select = true;
 				$("#form_option_context").blur();
 			}
 		});
+		
 	});
 </script>
 <div>

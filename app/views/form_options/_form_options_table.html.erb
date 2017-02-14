@@ -1,9 +1,25 @@
+<script type="text/javascript">
+$('.delete_form_option_button').bind('ajax:success', function() {  
+        $(this).closest('tr').fadeOut();
+});
+</script>
+
 <% if @form_options && !@form_options.empty? %>
 	<h4>Existing values for context: <%= @context %></h4>
 	<table class="table table-striped">
 		<% @form_options.each do |fo| %>
 		<tr>
-			<td><%=fo.text_value%></td>
+			<td class="col-md-3"><%=fo.text_value%></td>
+			<td class="col-md-1">
+				<%=link_to "Remove", 
+					form_options_path(:id => fo.id),
+					remote: true,
+					method: :delete,
+					:class=>"btn btn-danger delete_form_option_button", 
+					data: {:confirm => "Are you sure?"} 
+				%>
+			</td>
+			<td/>
 		</tr>
 		<% end %>
 	</table>

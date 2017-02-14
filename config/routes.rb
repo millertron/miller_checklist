@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 	get '/form_options', to: 'form_options#index'
 	post '/form_options', to: 'form_options#create'
 	get '/form_options/search', to: 'form_options#search'
+	delete '/form_options', to: 'form_options#destroy'
 	
 	get '/analytics', to: 'analytics#index'
 
