@@ -1,0 +1,10 @@
+<% if @form_options && !@form_options.empty? %>
+	<h4>Existing values for context: <%= @context %></h4>
+	<table class="table table-striped">
+		<% @form_options.each do |fo| %>
+		<tr>
+			<td><%=fo.text_value%></td>
+		</tr>
+		<% end %>
+	</table>
+<%end%>

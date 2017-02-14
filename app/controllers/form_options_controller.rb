@@ -12,10 +12,11 @@ class FormOptionsController < ApplicationController
 		end
 	end
 	
-	def ajax
-		respond_to do |format|
-			format.json { render json: { data: "Server response 66!" }, status: :success }
-		end
+	def search
+		@context = params[:searchText]
+		@form_options = FormOption.where(context: @context)
+		
+		render :partial => "form_options_table"
 	end
 	
 	private
