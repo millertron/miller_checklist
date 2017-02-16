@@ -27,6 +27,15 @@ MUTEX = {
 		new : function() {
 			checkSubmitReady("mandatory", "submit-checklist");
 		}
+	},
+	
+	form_options : {
+		init: function() {
+			
+		},
+		index : function() {
+			checkSubmitReady("mandatory", "submit-form_option");
+		}
 	}
 };
 
