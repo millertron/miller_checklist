@@ -3,7 +3,7 @@
 	var retrieveAndDisplayFormOptionsForContext = function(searchText){
 		$.ajax({
 			type: "GET",
-			url: <%= form_options_search_path %>,
+			url: "<%= form_options_search_path %>",
 			dataType: "html",
 			data: {'searchText' : searchText},
 			cache: false,
@@ -16,7 +16,7 @@
 		});
 	};
 
-	$(document).ready(function(){	
+	$(document).on("turbolinks:load", function(){	
 		var select = false;
 
 		$("#form_option_context").autocomplete({
