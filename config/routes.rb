@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 	delete '/form_options', to: 'form_options#destroy'
 	
 	get '/analytics', to: 'analytics#index'
+	get '/analytics/getsummary', to: 'analytics#get_summary'
 
 end

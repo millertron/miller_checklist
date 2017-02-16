@@ -36,6 +36,18 @@ MUTEX = {
 		index : function() {
 			checkSubmitReady("mandatory", "submit-form_option");
 		}
+	},
+	
+	analytics : {
+		init: function() {
+			
+		},
+		index : function(){
+			$('#summary-form').bind('ajax:success', function(event, data) {  
+				$("#data-summary").html(data);
+			});
+			$('#summary-form').submit();
+		}
 	}
 };
 
