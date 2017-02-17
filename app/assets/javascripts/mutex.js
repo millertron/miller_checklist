@@ -45,6 +45,13 @@ MUTEX = {
 		index : function(){
 			$('#summary-form').bind('ajax:success', function(event, data) {  
 				$("#data-summary").html(data);
+				$(".progress-bar").each(function(){
+					$(this).animate(
+						{
+							width: $(this).attr("data-score")
+						}, 500
+					);
+				});
 			});
 			$('#summary-form').submit();
 		}
