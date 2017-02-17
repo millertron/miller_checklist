@@ -52,6 +52,7 @@ MUTEX = {
 						}, 500
 					);
 				});
+				$('.submit-summary').show();
 			});
 			$('#summary-form').submit();
 		}

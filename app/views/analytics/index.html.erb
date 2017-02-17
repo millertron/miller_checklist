@@ -5,7 +5,7 @@
 			<%= form_for :analytics, 
 				url: analytics_getsummary_path, 
 				:remote=>true, 
-				:html => {id: "summary-form", method: :get} do |f| %>
+				:html => {id: "summary-form", method: :get, :onsubmit => "console.log('submit!'); $('.submit-summary').hide();"} do |f| %>
 				<%= f.select :range_type, @range_type_options, {}, {:class=>"form-control"}%>
 				<%= f.submit "Update results", :class=>"btn btn-default submit-summary"%> 
 			<% end %>
