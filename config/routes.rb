@@ -19,4 +19,10 @@ Rails.application.routes.draw do
 	
 	get '/analytics', to: 'analytics#index'
 
+	namespace :api, defaults: { format: :json } do
+		namespace :v1 do
+			resources :checklists 
+			resources :implementations
+		end
+	end
 end
