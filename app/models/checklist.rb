@@ -1,5 +1,8 @@
 class Checklist < ApplicationRecord
 	
+	validates :name, presence: true
+	validates :frequence, presence: true
+	
 	attr_accessor :implemented
 
 	belongs_to :owner, class_name: "User", required: false
