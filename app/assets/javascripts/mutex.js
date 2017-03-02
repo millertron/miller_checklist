@@ -27,6 +27,35 @@ MUTEX = {
 		new : function() {
 			checkSubmitReady("mandatory", "submit-checklist");
 		}
+	},
+	
+	form_options : {
+		init: function() {
+			
+		},
+		index : function() {
+			checkSubmitReady("mandatory", "submit-form_option");
+		}
+	},
+	
+	analytics : {
+		init: function() {
+			
+		},
+		index : function(){
+			$('#summary-form').bind('ajax:success', function(event, data) {  
+				$("#data-summary").html(data);
+				$(".progress-bar").each(function(){
+					$(this).animate(
+						{
+							width: $(this).attr("data-score")
+						}, 500
+					);
+				});
+				$('.submit-summary').show();
+			});
+			$('#summary-form').submit();
+		}
 	}
 };
 

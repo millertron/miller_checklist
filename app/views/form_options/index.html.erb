@@ -3,7 +3,7 @@
 	var retrieveAndDisplayFormOptionsForContext = function(searchText){
 		$.ajax({
 			type: "GET",
-			url: "/form_options/search",
+			url: "<%= form_options_search_path %>",
 			dataType: "html",
 			data: {'searchText' : searchText},
 			cache: false,
@@ -16,7 +16,7 @@
 		});
 	};
 
-	$(document).ready(function(){	
+	$(document).on("turbolinks:load", function(){	
 		var select = false;
 
 		$("#form_option_context").autocomplete({
@@ -28,17 +28,22 @@
 				} else {
 					select = false;
 				}
+				checkSubmitReady('mandatory','submit-form_option');
 			},
 			select: function(e, ui){
 				retrieveAndDisplayFormOptionsForContext(ui.item.value);
 				select = true;
 				$("#form_option_context").blur();
+				checkSubmitReady("mandatory","submit-form_option");
 			}
 		});
 		
 		$('#new_form_option').bind('ajax:success', function() {  
 			$("#form_option_text_value").val("");
 			retrieveAndDisplayFormOptionsForContext($("#form_option_context").val());
+			
+			$("input:submit.submit-form_option").prop("disabled", true);
+			//checkSubmitReady("mandatory","submit-form_option");
 		});
 	});
 </script>
@@ -48,12 +53,12 @@
 		<div class="form-group">
 			<div>
 				<%= f.label :context %>
-				<%= f.text_field :context, :class=>"form-control", value: @default_context%>
+				<%= f.text_field :context, :class=>"form-control mandatory", value: @default_context%>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :text_value %>
-			<%= f.text_field :text_value, :class=>"form-control"%>
+			<%= f.text_field :text_value, :class=>"form-control mandatory", :onchange => "checkSubmitReady('mandatory','submit-form_option');"%>
 		</div>
 		<%= f.submit "Add form option", :class=>"btn btn-default submit-form_option" %>
 

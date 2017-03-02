@@ -1,0 +1,18 @@
+Completion rate:
+<table >
+<% @data.each do |item| %>
+		<tr>
+			<td class="col-md-4" style="vertical-align: top;"><%= item.checklist_name %></td>
+			<td class="col-md-8 col-xs-8">
+				<div class="progress-container">
+					<div class="progress">
+						<div class="progress-bar progress-bar-<%= item.progress_class %>" style="width:0%"
+							data-score="<%=item.score%>%">
+						</div>
+					</div>
+				</div>
+			</td>
+			<td class="col-md-1" style="vertical-align: top;"><%= item.score %>%</td>
+		</tr>
+<%end%>
+</table>
