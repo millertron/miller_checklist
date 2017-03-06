@@ -20,4 +20,10 @@ Rails.application.routes.draw do
 	get '/analytics', to: 'analytics#index'
 	get '/analytics/getsummary', to: 'analytics#get_summary'
 
+	namespace :api, defaults: { format: :json } do
+		namespace :v1 do
+			resources :checklists 
+			resources :implementations
+		end
+	end
 end
