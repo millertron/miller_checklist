@@ -4,7 +4,7 @@ describe User do
 	
 	context "named user" do
 		before do
-			@user = build(:user)
+			@user = FactoryGirl.build(:user)
 		end
 		
 		it "is invalid user'" do
