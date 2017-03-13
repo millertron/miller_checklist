@@ -28,9 +28,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 
 
+#IMPORTANT!!!!!
 # run 'gem install bcrypt --platform=ruby' manually
 # every time bundle install is run, uninstall the version with x64 suffix
 gem 'bcrypt', '~> 3.1.11'
+
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
