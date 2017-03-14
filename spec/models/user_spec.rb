@@ -8,7 +8,6 @@ describe User do
 		end
 		
 		it "is invalid user'" do
-			expect(@user.first_name).to eq("Koha")
 			expect(@user).to be_invalid
 		end
 	end
@@ -27,10 +26,12 @@ describe User do
 		before do
 			@user_a = FactoryGirl.create(:user, password: "pass1", password_confirmation: "pass1", username: "koha")
 			@user_b = FactoryGirl.build(:user, password: "pass2", password_confirmation: "pass2", username: "koha")
+			@user_c = FactoryGirl.build(:user, password: "pass2", password_confirmation: "pass2", username: "miller")
 		end
 		
 		it "is invalid user" do
 			expect(@user_b).to be_invalid
+			expect(@user_c).to be_valid
 		end
 		
 		after do
