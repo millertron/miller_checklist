@@ -1,7 +1,7 @@
 class Checklist < ApplicationRecord
 	
 	validates :name, presence: true
-	validates :frequence, presence: true
+	validates :frequency, presence: true
 	
 	attr_accessor :implemented
 
