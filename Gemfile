@@ -26,8 +26,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
+
+
+#IMPORTANT!!!!!
 # run 'gem install bcrypt --platform=ruby' manually
+# every time bundle install is run, uninstall the version with x64 suffix
 gem 'bcrypt', '~> 3.1.11'
+
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
@@ -37,6 +42,13 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  
+  #from https://cucumber.io/docs/reference/rails
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem "factory_girl_rails"
 end
 
 group :development do

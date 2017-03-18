@@ -1,0 +1,5 @@
+RSpec.configure do |config|
+	FactoryGirl.definition_file_paths = nil
+	FactoryGirl.definition_file_paths = [File.expand_path('../factories', __FILE__)]
+	FactoryGirl.find_definitions
+end
