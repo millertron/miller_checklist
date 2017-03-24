@@ -1,4 +1,5 @@
 checkSubmitReady = function(mandatoryClassName, submitClassName){
+	//Front-end validation disabling submit button - may remove this when ActiveRecord validation is correctly implemented.
 	var submitReady = true;
 	$("input:checkbox."+mandatoryClassName).each(function(){
 		if (!$(this).prop("checked")==true){

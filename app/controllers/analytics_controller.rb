@@ -10,6 +10,7 @@ class AnalyticsController < ApplicationController
 	end
 	
 	def get_summary
+		#Returns random data at the moment to play around, move to use checklist data when data visualization design has been completed.
 		@data = Array.new
 		(1..5).each do |i|
 			score = rand(0..100)
