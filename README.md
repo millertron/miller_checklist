@@ -2,6 +2,19 @@
 
 Rails application that enables users to complete regular checklists
 
+## Typical usage:
+
+USER would log in from the default page, then be taken to the DASHBOARD where they can create new CHECKLISTS.
+
+Once a checklist is created they will appear in the user's dashboard at the correct position depending on the target frequency (DAILY, WEEKLY, MONTHLY).
+
+The user can select the created checklist and IMPLEMENT them. If the checklist type is BINARY, then they would tick the checkbox, if NUMERIC they would enter some numerical value. Upon returning the dashboard, they would see the checklist marked as completed.
+
+ANALYTICS page would display the user's checklist completion statistics (not yet implemented)
+
+Via the ADMIN page user can add CONTEXT-specific FORM OPTIONS, which would be used for checklists of either type SINGLE_SELECT or MULTI_SELECT. This is not yet implemented.
+
+
 ## Ruby version: 
 
 2.3.1
