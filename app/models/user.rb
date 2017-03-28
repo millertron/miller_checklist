@@ -4,6 +4,10 @@ class User < ApplicationRecord
 		doc.api_key = doc.generate_api_key
 	end
 	
+	before_save do
+		self.username = username.downcase
+	end
+	
 	has_many :checklists
 	has_secure_password
 	
