@@ -1,6 +1,3 @@
-Given(/^I am a logged in user$/) do
-
-end
 
 Given(/^there is a checklist that belongs to me$/) do
 	#@my_checklist = FactoryGirl.create()
