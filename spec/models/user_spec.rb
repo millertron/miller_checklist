@@ -13,7 +13,7 @@ describe User do
 	}
 	
 	context "validation" do
-		let (:user) { FactoryGirl.create(:user, valid_attributes) }
+		let (:user) { FactoryGirl.build(:user, valid_attributes) }
 		it "requires a username" do
 			expect(user).to validate_presence_of(:username)
 		end
@@ -30,7 +30,7 @@ describe User do
 	end
 	
 	context "being saved" do
-		let (:user) { FactoryGirl.create(:user, valid_attributes.merge(username: "UPPERCASE")) }
+		let (:user) { FactoryGirl.build(:user, valid_attributes.merge(username: "UPPERCASE")) }
 		
 		it "gets their username downcased" do
 			expect(user.save).to eq true
