@@ -6,6 +6,7 @@
 
 require 'cucumber/rails'
 require 'factory_girl'
+require 'capybara/cucumber'
 
 FactoryGirl.definition_file_paths = nil
 FactoryGirl.definition_file_paths = [File.expand_path('../../../factory_girl/factories', __FILE__)]
