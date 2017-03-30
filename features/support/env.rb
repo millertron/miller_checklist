@@ -5,6 +5,12 @@
 # files.
 
 require 'cucumber/rails'
+require 'factory_girl'
+require 'capybara/cucumber'
+
+FactoryGirl.definition_file_paths = nil
+FactoryGirl.definition_file_paths = [File.expand_path('../../../factory_girl/factories', __FILE__)]
+FactoryGirl.find_definitions
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any

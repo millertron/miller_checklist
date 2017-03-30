@@ -2,40 +2,40 @@ require 'spec_helper'
 
 describe User do
 	
-	context "without password" do
-		before do
-			@user = FactoryGirl.build(:user)
+	let(:valid_attributes) {
+		{
+			first_name: "Koha",
+			last_name: "Choji",
+			username: "kohachoji",
+			password: "pass",
+			password_confirmation: "pass",
+		}
+	}
+	
+	context "validation" do
+		let (:user) { FactoryGirl.build(:user, valid_attributes) }
+		it "requires a username" do
+			expect(user).to validate_presence_of(:username)
 		end
 		
-		it "is invalid user'" do
-			expect(@user).to be_invalid
+		it "requires a unique username" do
+			expect(user).to validate_uniqueness_of(:username)
 		end
+		
+		it "requires a unique username (case insensitive)" do
+			user.username = "kohachoji"
+			expect(user).to validate_uniqueness_of(:username)
+		end
+		
 	end
 	
-	context "with all required details" do
-		before do
-			@user = FactoryGirl.build(:user, password: "pass", password_confirmation: "pass", username: "koha")
-		end
+	context "being saved" do
+		let (:user) { FactoryGirl.build(:user, valid_attributes.merge(username: "UPPERCASE")) }
 		
-		it "is valid user" do
-			expect(@user).to be_valid
+		it "gets their username downcased" do
+			expect(user.save).to eq true
+			expect(user.username).to eq("uppercase")
 		end
 	end
-	
-	context "with the same username as another user" do
-		before do
-			@user_a = FactoryGirl.create(:user, password: "pass1", password_confirmation: "pass1", username: "koha")
-			@user_b = FactoryGirl.build(:user, password: "pass2", password_confirmation: "pass2", username: "koha")
-			@user_c = FactoryGirl.build(:user, password: "pass2", password_confirmation: "pass2", username: "miller")
-		end
-		
-		it "is invalid user" do
-			expect(@user_b).to be_invalid
-			expect(@user_c).to be_valid
-		end
-		
-		after do
-			DatabaseCleaner.clean
-		end
-	end
+
 end

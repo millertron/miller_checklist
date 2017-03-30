@@ -105,6 +105,7 @@ RSpec.configure do |config|
 	require File.expand_path("../../config/environment", __FILE__)
 	require 'rspec/rails'
 	require_relative '../factory_girl/factory_girl'
+	require 'capybara/rspec'
 	
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

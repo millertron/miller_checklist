@@ -49,6 +49,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem "factory_girl_rails"
+  gem 'shoulda', '~> 3.5'
+  gem 'shoulda-matchers', '~> 2.0'
+  gem 'capybara', '~> 2.5'
 end
 
 group :development do

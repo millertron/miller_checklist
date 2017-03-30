@@ -1,5 +1,5 @@
 <% if @daily_checklists.any? %>
-	<div class="panel panel-default">
+	<div class="panel panel-default daily-checklists">
 		<div class="panel-heading">
 			<h4>Checklists to complete today</h4>
 		</div>
@@ -9,7 +9,7 @@
 <% end %>
 
 <% if @weekly_checklists.any? %>
-	<div class="panel panel-default">
+	<div class="panel panel-default weekly-checklists">
 		<div class="panel-heading">
 			<h4>Checklists to complete this week</h4>
 		</div>
@@ -19,7 +19,7 @@
 <% end %>
 
 <% if @monthly_checklists.any? %>
-	<div class="panel panel-default">
+	<div class="panel panel-default monthly-checklists">
 		<div class="panel-heading">
 			<h4>Checklists to complete this month</h4>
 		</div>
