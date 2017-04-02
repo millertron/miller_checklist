@@ -9,7 +9,7 @@ Scenario: A logged in user should see the link to the checklist creation page in
 	When I go to the dashboard page
 	Then I must see a link to the checklist creation page
 	
-Scenario:
+Scenario: A user navigates from the dashboard to the checklist creation page to see the form.
 	Given I am logged in as a basic user
 	When I go to the dashboard page
 	And I go to the checklist creation page

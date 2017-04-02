@@ -41,6 +41,23 @@ Then(/^I must see a checklist creation form$/) do
 	#expect(page).to have_content "Create Checklist" #Doesn't work - is it because it's a submit button???
 end
 
+Given(/^there is an incomplete, (.*) checklist that belongs to someone else$/) do |frequency|
+	if User.find_by_username("someoneelse") == nil
+		FactoryGirl.create(:user, username: "someoneelse", password: "password123", password_confirmation: "password123")
+	end
+	
+	@checklist = FactoryGirl.create(:checklist, owner: User.find_by_username("someoneelse"), name: "someone else's checklist", frequency: frequency)
+	@checklist.checklist_items.push FactoryGirl.create(:checklist_item, checklist: @checklist)
+	@checklist.save	
+end
+
+Then(/^I must not see the implementation link for checklists that is not mine$/) do
+	@foreign_checklists = Checklist.where.not(owner: @current_logged_in_user)
+	@foreign_checklists.each do |checklist|
+		expect(page).to have_no_content(checklist.name)
+	end
+end 
+
 #Given(/^$/) do
 #
 #end
