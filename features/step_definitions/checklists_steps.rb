@@ -1,12 +1,4 @@
 
-Given(/^there is a checklist that belongs to me$/) do
-	#@my_checklist = FactoryGirl.create()
-end
-
-Then(/^I must see the checklist's summary$/) do
-	#expect(page).to have_content()
-end
-
 Given(/^there is an incomplete, (.*) checklist that belongs to me called (.*)$/) do |frequency, checklist_name|
 	if Checklist.where(owner_id: @current_logged_in_user, frequency: frequency, name: checklist_name).count == 0
 		@checklist = FactoryGirl.create(:checklist, owner: @current_logged_in_user, name: checklist_name, frequency: frequency)
@@ -33,6 +25,20 @@ Then(/^I must see the implementation link for (.*) under (.*) checklists$/) do |
 	within(@section_div) do
 		expect(page).to have_content checklist_name
 	end
+end
+
+Then(/^I must see a link to the checklist creation page$/) do
+	expect(page).to have_content "Create Checklist"
+end
+
+When(/^I go to the checklist creation page$/) do
+	click_on "Create Checklist"	
+end
+
+Then(/^I must see a checklist creation form$/) do
+	expect(page).to have_content "New Checklist for"
+	expect(page).to have_selector "input[type='submit'][value='Create Checklist']"
+	#expect(page).to have_content "Create Checklist" #Doesn't work - is it because it's a submit button???
 end
 
 #Given(/^$/) do
