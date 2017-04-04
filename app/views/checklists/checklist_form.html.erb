@@ -22,7 +22,7 @@
 				<%= i_f.text_field :text, :class=>"form-control" %>
 			</div>
 			<div class="form-group">
-				<%= i_f.label :value_type %>
+				<%= i_f.label :value_type, "Value Type" %>
 				<%= i_f.select :value_type, @value_type_options, {}, {:onChange=>"updateAdditionalFieldsForValueType(#{i_f.index});", :class=>"form-control"}%>
 			</div>
 			<div id="metricFieldForms">

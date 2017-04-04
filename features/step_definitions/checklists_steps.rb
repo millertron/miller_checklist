@@ -58,6 +58,26 @@ Then(/^I must not see the implementation link for checklists that is not mine$/)
 	end
 end 
 
+When(/^I create a (.*), (.*) checklist called (.*), with text (.*)$/) do |frequency, type, name, question|
+	fill_in "Name", :with => name
+	select frequency, :from => "Target Frequency"
+	fill_in "Text", :with => question
+	select type, :from => "Value Type"
+	click_on "Create Checklist"
+end
+
+Then(/^there should be a (.*), (.*) checklist that belongs to me called (.*), with text (.*)$/) do |frequency, type, name, question|
+	expect(Checklist.exists?(:owner=>@current_logged_in_user, :frequency=>frequency, :name=>name)).to eq true
+	@checklist = Checklist.where(:owner=>@current_logged_in_user, :frequency=>frequency, :name=>name).first
+	expect(@checklist.name).to eq name
+	expect(@checklist.checklist_items.first.value_type).to eq type
+	expect(@checklist.checklist_items.first.text).to eq question
+end
+
+Then(/^I should end up at the dashboard$/) do
+	expect(page).to have_current_path(root_path, only_path: true)
+end
+
 #Given(/^$/) do
 #
 #end

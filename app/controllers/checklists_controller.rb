@@ -45,7 +45,7 @@ class ChecklistsController < ApplicationController
 		@checklist = Checklist.new(checklist_params)
 		@checklist.owner_id = current_user.id
 		if @checklist.save then
-			redirect_to checklists_path
+			redirect_to root_path
 		end
 	end
 	
