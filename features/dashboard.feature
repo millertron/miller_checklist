@@ -23,7 +23,7 @@ Scenario: User with an unimplemented monthly checklist logs into the system
 	Then I must see the implementation link for monthly_checklist_1 under monthly checklists
 
 Scenario: User with checklists of all types logs into the system
-	Given I am logged in as kohachoji with password password123
+	Given I am logged in as a basic user
 	And there is an incomplete, daily checklist that belongs to me called daily_checklist_1
 	And there is an incomplete, weekly checklist that belongs to me called weekly_checklist_1
 	And there is an incomplete, monthly checklist that belongs to me called monthly_checklist_1
