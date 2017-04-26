@@ -1,6 +1,6 @@
 class Checklist < ApplicationRecord
 	
-	validates :name, presence: true, uniqueness: {:scope => :owner}
+	validates :name, presence: true, uniqueness: {:scope => :owner, :case_sensitive => false}
 	validates :frequency, presence: true
 	
 	attr_accessor :implemented

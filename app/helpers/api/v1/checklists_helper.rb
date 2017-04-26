@@ -1,2 +1,2 @@
-module Api::V1::ChecklistsHelper
+module API::V1::ChecklistsHelper
 end
