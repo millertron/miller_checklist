@@ -13,7 +13,7 @@ describe Checklist do
 		end
 		
 		it "requires a unique name (case insensitive)" do
-			checklist.name = "kohachoji"
+			checklist.name = "checklist1"
 			expect(checklist).to validate_uniqueness_of(:name)
 		end
 		
