@@ -1,11 +1,10 @@
-class Api::V1::ChecklistsController < Api::ApiController
+class API::V1::ChecklistsController < API::APIController
 	
-	before_action :authenticate
+	before_action :authenticate, except: :index
 	
 	def index
-		@checklists = Checklist.all
-		respond_to do |format|
-			format.json { render(json: @checklists) }
-		end
+		puts "API GET request for checklists!"
+		checklists = Checklist.all
+		render json: checklists, status: 200
 	end
 end

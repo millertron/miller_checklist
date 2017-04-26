@@ -1,4 +1,4 @@
-class Api::ApiController < ActionController::Base
+class API::APIController < ActionController::Base
 
 	private
 	def authenticate
