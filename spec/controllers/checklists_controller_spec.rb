@@ -1,19 +1,29 @@
 require 'spec_helper'
 
-describe ChecklistsController do
-
-	context "building from factory" do
-		
-		before do
-			@checklist = FactoryGirl.build(:checklist)
-			@checklist_item = FactoryGirl.build(:checklist_item, checklist: @checklist)
-			@checklist.checklist_items.push(@checklist_item)
+describe ChecklistsController, :type => :controller do
+	context "with no user logged in", focus: true do
+		context "GET #new" do
+			it "redirects to login page" do
+				get :new
+				expect(controller).to_not receive(:new)
+				expect(response).to redirect_to login_path 
+			end
 		end
-		
-		it "builds a checklist" do
-			expect(@checklist.checklist_items.size).to eq(1) 
-		end
-		
 	end
 
+	context "user logged in" do
+		let(:user){FactoryGirl.create(:user, password: "password", password_confirmation: "password")}
+			
+		before do
+			session[:user_id] = user.id	
+		end
+		
+		context "GET #new", focus: true do
+			it "renders a page for new checklists creation" do
+				expect(response).to be_success
+			end
+		end
+	
+	end
+	
 end

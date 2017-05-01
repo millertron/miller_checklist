@@ -53,6 +53,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 2.0'
   gem 'capybara', '~> 2.5'
   gem 'launchy', '~> 2.2.0'
+  gem 'rails-controller-testing'
 end
 
 group :development do
