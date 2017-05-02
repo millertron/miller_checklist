@@ -11,7 +11,7 @@ describe API::V1::ChecklistsController, type: :controller do
 		
 		it "returns a response type of application/json" do
 			get :index, format: :json
-			expect(response.header['Content-Type']).to match /json/
+			expect(response.content_type).to eq Mime[:json]
 		end
 		
 		it "returns all the checklists" do
