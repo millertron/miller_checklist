@@ -15,7 +15,7 @@ describe API::V1::ChecklistsController, type: :controller do
 		end
 		
 		it "returns all the checklists" do
-			FactoryGirl.create(:checklist, owner: user, name: "Checklist 1", frequency: :daily)
+			FactoryGirl.create(:checklist, owner: user, name: "Checklist 1")
 			get :index, format: :json
 			expect(response.body).to eq Checklist.all.to_json
 		end
