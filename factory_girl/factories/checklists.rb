@@ -6,7 +6,7 @@ FactoryGirl.define do
 	end
 
 	factory :checklist do
-		name "My Checklist"
+		sequence(:name) { |n| "Factory Checklist #{n}" }
 		description "Description for my checklist"
 		frequency :daily
 	end
