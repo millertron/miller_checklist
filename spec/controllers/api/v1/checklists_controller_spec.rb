@@ -27,10 +27,15 @@ describe API::V1::ChecklistsController, type: :controller do
 				end
 				
 				it "returns only the user's checklists" do
-					FactoryGirl.create(:checklist, owner: user)
-					FactoryGirl.create(:checklist, owner: other_user)
+					my_checklist = FactoryGirl.create(:checklist, owner: user) 
+					other_guys_checklist = FactoryGirl.create(:checklist, owner: other_user)
 					get :index, params: user_params, format: :json
-					expect(response.body).to eq Checklist.where(owner_id: user.id).to_json
+					checklists = JSON.parse(response.body, {symbolize_names: true})
+					expect(checklists.size).to eq 1
+					expect(checklists[0][:id]).to eq my_checklist.id
+					expect(checklists[0][:description]).to eq my_checklist.description
+					expect(checklists[0][:frequency]).to eq my_checklist.frequency
+					expect(checklists[0][:owner_id]).to eq user.id
 				end
 			end
 		end
