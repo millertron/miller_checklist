@@ -7,7 +7,7 @@ class API::APIController < ActionController::Base
 	
 	def authenticate_token
 		authenticate_or_request_with_http_token do |token, options|
-			@user = User.where(api_key: token).first
+			User.find_by(api_key: token)
 		end
 	end
 	

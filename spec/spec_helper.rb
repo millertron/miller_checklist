@@ -121,3 +121,7 @@ RSpec.configure do |config|
    end
 
 end
+
+def token_header(token)
+	ActionController::HttpAuthentication::Token.encode_credentials(token)
+end

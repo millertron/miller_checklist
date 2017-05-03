@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ChecklistsController, :type => :controller do
-	context "with no user logged in", focus: true do
+	context "with no user logged in" do
 		context "GET #new" do
 			it "redirects to login page" do
 				get :new
@@ -18,7 +18,7 @@ describe ChecklistsController, :type => :controller do
 			session[:user_id] = user.id	
 		end
 		
-		context "GET #new", focus: true do
+		context "GET #new" do
 			it "renders a page for new checklists creation" do
 				expect(response).to be_success
 			end

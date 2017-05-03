@@ -1,6 +1,6 @@
 class API::V1::ChecklistsController < API::APIController
 	
-	before_action :authenticate, except: :index
+	before_action :authenticate
 	
 	def index
 		checklists = Checklist.all
