@@ -9,5 +9,6 @@ FactoryGirl.define do
 		sequence(:name) { |n| "Factory Checklist #{n}" }
 		description "Description for my checklist"
 		frequency :daily
+		association :owner, factory: :user 
 	end
 end
