@@ -3,7 +3,13 @@ class API::V1::ImplementationsController < API::APIController
 	before_action :authenticate
 
 	def create
-		checklist = Checklist.find(params[:implementation][:checklist_id])
+		begin
+			checklist = Checklist.find(params[:implementation][:checklist_id])
+		rescue ActiveRecord::RecordNotFound
+			puts "No checklist found for implementation."
+			render json: "No checklist found for implemenation.", status: :bad_request
+			return
+		end
 		
 		implementation = Implementation.where(checklist_id: checklist.id, implemented_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).last if checklist.frequency == "daily"
 		implementation = Implementation.where(checklist_id: checklist.id, implemented_date: Time.zone.now.beginning_of_week..Time.zone.now.end_of_week).last if checklist.frequency == "weekly"
