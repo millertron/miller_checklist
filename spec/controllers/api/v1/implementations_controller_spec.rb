@@ -41,6 +41,16 @@ describe API::V1::ImplementationsController, type: :controller do
 				post :create, params: valid_params.merge({implementation: {checklist_id: nil}}), format: :json					
 				expect(response).to have_http_status(:bad_request)				
 			end
+			
+			it "returns bad request if user attempts to implement someone else's checklist" do
+				someone_elses_checklist = FactoryGirl.build(:checklist)
+				someone_elses_checklist_item = FactoryGirl.build(:checklist_item, checklist: someone_elses_checklist, value_type: :binary)
+				someone_elses_checklist.checklist_items << someone_elses_checklist_item
+				someone_elses_checklist.save
+				
+				post :create, params: valid_params.merge({implementation: {checklist_id: someone_elses_checklist.id}}), format: :json
+				expect(response).to have_http_status(:bad_request)
+			end
 
 		end
 		

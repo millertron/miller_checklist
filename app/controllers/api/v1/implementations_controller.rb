@@ -6,8 +6,12 @@ class API::V1::ImplementationsController < API::APIController
 		begin
 			checklist = Checklist.find(params[:implementation][:checklist_id])
 		rescue ActiveRecord::RecordNotFound
-			puts "No checklist found for implementation."
 			render json: "No checklist found for implemenation.", status: :bad_request
+			return
+		end
+		
+		if checklist.owner_id != params[:implementation][:implementor_id].to_i
+			render json: "Checklist does not belong to implementing user.", status: :bad_request
 			return
 		end
 		
