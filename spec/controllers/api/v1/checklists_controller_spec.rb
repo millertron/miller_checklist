@@ -4,11 +4,11 @@ describe API::V1::ChecklistsController, type: :controller do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:other_user) { FactoryGirl.create(:user) }
 	let(:user_params) { {owner_id: user.id} }
-	context "token authenticated with API key" do
+	context "when token authenticated with API key" do
 
 		before { request.env["HTTP_AUTHORIZATION"] = token_header(user.api_key) }
 		
-		describe "GET 'index'" do
+		describe "GET #index" do
 			
 			it "requires a user ID parameter" do
 				get :index, format: :json
