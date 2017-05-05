@@ -1,2 +1,0 @@
-module API::APIHelper
-end
