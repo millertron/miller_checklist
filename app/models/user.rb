@@ -3,7 +3,8 @@ class User < ApplicationRecord
 	enum status: { preactive: 0, active: 1, archived: 2 }, _suffix: true
 	
 	before_create do |doc|
-		doc.api_key = doc.generate_api_key
+		doc.api_key = doc.generate_secure_token :api_key
+		doc.activation_code = doc.generate_secure_token :activation_code
 	end
 	
 	before_save do
@@ -24,10 +25,11 @@ class User < ApplicationRecord
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
 	validates :password, presence: true
 	
-	def generate_api_key
+	def generate_secure_token attribute 
 		loop do
-			token = SecureRandom.base64.tr('+/=', 'Qrt')
-			break token unless User.exists?(api_key: token)
+			token = SecureRandom.urlsafe_base64
+			break token unless User.exists?(attribute => token)
 		end
 	end
+	
 end

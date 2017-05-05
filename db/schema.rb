@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170222073858) do
     t.string   "api_key"
     t.integer  "status",          default: 0
     t.string   "email"
+    t.string   "activation_code"
   end
 
 end

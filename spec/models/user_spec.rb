@@ -24,6 +24,10 @@ describe User do
 			user.save
 			expect(user.api_key).not_to eq nil
 		end
+		it "generates an activation code" do
+			expect(user.activation_code).to eq nil
+			user.save
+			expect(user.activation_code).not_to eq nil
 		end
 	end
 	

@@ -12,7 +12,7 @@ describe ChecklistsController, :type => :controller do
 	end
 
 	context "user logged in" do
-		let(:user){FactoryGirl.create(:user, password: "password", password_confirmation: "password")}
+		let(:user){FactoryGirl.create(:user)}
 			
 		before do
 			session[:user_id] = user.id	
