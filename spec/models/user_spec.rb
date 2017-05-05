@@ -8,7 +8,14 @@ describe User do
 	context "validation" do
 		it {should validate_presence_of(:username)}
 		it {should validate_uniqueness_of(:username).case_insensitive}
+	end
+	
+	context "#initialize" do
+		it "sets status to PREACTIVE" do
+			expect(user.preactive_status?).to be true
 		end
+	end
+	
 	context "being created" do
 		it "generates an API key" do
 			expect(user.api_key).to eq nil

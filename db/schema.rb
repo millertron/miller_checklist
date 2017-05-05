@@ -68,10 +68,11 @@ ActiveRecord::Schema.define(version: 20170222073858) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "password_digest"
     t.string   "api_key"
+    t.integer  "status",          default: 0
   end
 
 end
