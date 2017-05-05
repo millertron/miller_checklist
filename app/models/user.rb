@@ -13,7 +13,7 @@ class User < ApplicationRecord
 	
 	validates :first_name, presence: true
 	validates :last_name, presence: true
-	validates :username, presence: true, uniqueness: true
+	validates :username, presence: true, uniqueness: {case_sensitive: false}
 	validates :password, presence: true
 	
 	def generate_api_key
