@@ -1,8 +1,8 @@
-class API::V1::AuthenticationController < ApplicationController
+class API::V1::AuthenticationController < API::APIController
 
-	def edit
-		user = User.find_by_username(params[:id])
-		if (user && user.authenticate(params[:key]))
+	def create
+		user = User.find_by_username(request.headers["HTTP_AUTH_ID"])
+		if user && user.authenticate(request.headers["HTTP_AUTH_KEY"])
 			user_details = "User account: #{user.first_name} #{user.last_name} (#{user.username})"
 			case user.status.to_sym
 			when :preactive
@@ -13,6 +13,7 @@ class API::V1::AuthenticationController < ApplicationController
 				render json: "#{user_details} is no longer valid. Please create a new account or sign in with another.", status: :unauthorized
 			end
 		else
+			puts "user not found"
 			render json: 'Bad credentials', status: :unauthorized
 		end
 		
