@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 		namespace :v1 do
 			resources :checklists, only: :index 
 			resources :implementations, only: :create
+			resources :authentication, only: :edit
 		end
 	end
 end

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 	@user = User.find_by_username(params[:session][:username])
 	if (@user && @user.authenticate(params[:session][:password]))
 		session[:user_id] = @user.id
-		redirect_to checklists_path
+		redirect_to root_path
 	else
 		flash[:danger] = "Failed to log in with credentials provided."
 		redirect_to login_path
