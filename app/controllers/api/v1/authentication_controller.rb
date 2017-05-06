@@ -13,7 +13,6 @@ class API::V1::AuthenticationController < API::APIController
 				render json: "#{user_details} is no longer valid. Please create a new account or sign in with another.", status: :unauthorized
 			end
 		else
-			puts "user not found"
 			render json: 'Bad credentials', status: :unauthorized
 		end
 		
