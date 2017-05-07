@@ -4,6 +4,8 @@
 	</div>
 <% end %>
 
+<h2>Sign-up form</h2>
+
 <%= form_for(@user) do |f| %>
 <div class="form-group">
 	<%= f.label :username%><br/>
@@ -17,6 +19,11 @@
 	<%= f.label :last_name%><br/>
 	<%= f.text_field :last_name, :place_holder => "Last name", :class => "input" %>
 </div>
+<div class="form-group">
+	<%= f.label :email, "Email address" %><br/>
+	<%= f.email_field :email, :place_holder => "Email address", :class => "input" %>
+</div>
+
 <div class="form-group">
 	<%= f.label :password%><br/>
 	<%= f.password_field :password, :place_holder => "Password", :class => "input" %>

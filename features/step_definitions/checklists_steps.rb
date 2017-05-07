@@ -31,10 +31,6 @@ Then(/^I must see a link to the checklist creation page$/) do
 	expect(page).to have_content "Create Checklist"
 end
 
-When(/^I go to the checklist creation page$/) do
-	click_on "Create Checklist"	
-end
-
 Then(/^I must see a checklist creation form$/) do
 	expect(page).to have_content "New Checklist for"
 	expect(page).to have_selector "input[type='submit'][value='Create Checklist']"
@@ -72,10 +68,6 @@ Then(/^there should be a (.*), (.*) checklist that belongs to me called (.*), wi
 	expect(checklist.name).to eq name
 	expect(checklist.checklist_items.first.value_type).to eq type
 	expect(checklist.checklist_items.first.text).to eq question
-end
-
-Then(/^I should end up at the dashboard$/) do
-	expect(page).to have_current_path(root_path, only_path: true)
 end
 
 #Given(/^$/) do

@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
 		if validate_user? @user
 			if @user.save
-				session[:user_id] = @user.id
 				redirect_to root_path
+				UserMailer.activation @user
 			else
 				flash[:danger] = "Failed to create user. Please contact the site administrator."
 				redirect_to signup_path
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 	
 	private
 	def user_params
-		params.require(:user).permit(:username, :first_name, :last_name, :password)
+		params.require(:user).permit(:username, :first_name, :last_name, :email, :password)
 	end
 
 end

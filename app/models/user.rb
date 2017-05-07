@@ -3,18 +3,14 @@ class User < ApplicationRecord
 	enum status: { preactive: 0, active: 1, archived: 2 }, _suffix: true
 	
 	before_create do |doc|
+		doc.status ||= :preactive
 		doc.api_key = doc.generate_secure_token :api_key
 		doc.activation_code = doc.generate_secure_token :activation_code
 	end
 	
 	before_save do
 		self.username = username.downcase
-	end
-	
-	def initialize
-		super
-		self.status = :preactive
-	end
+	end	
 	
 	has_many :checklists
 	has_secure_password

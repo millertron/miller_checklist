@@ -25,8 +25,9 @@ RSpec.describe API::V1::AuthenticationController, type: :controller do
 					post "create", params: {}, format: :json
 				end
 				it {should respond_with(:ok)}
-				it "should return the user serialized with names, email, status and API key only" do
+				it "should return the user serialized with id, names, email, status and API key only" do
 					user_json = JSON.parse(response.body)
+					expect(user_json["id"]).to eq user.id
 					expect(user_json["first_name"]).to eq user.first_name
 					expect(user_json["last_name"]).to eq user.last_name
 					expect(user_json["username"]).to eq user.username

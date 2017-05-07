@@ -6,5 +6,6 @@ FactoryGirl.define do
 		sequence(:email) {|n| "factory_user#{n}@test.com"} 
 		password "password"
 		password_confirmation "password"
+		status :preactive
 	end
 end
