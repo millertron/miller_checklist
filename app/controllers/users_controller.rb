@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		if validate_user? @user
 			if @user.save
 				redirect_to root_path
-				UserMailer.activation @user
+				UserMailer.activation(@user).deliver_now
 			else
 				flash[:danger] = "Failed to create user. Please contact the site administrator."
 				redirect_to signup_path
