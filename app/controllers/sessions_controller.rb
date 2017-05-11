@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
   
   def create
 	@user = User.find_by_username(params[:session][:username])
-	if (@user && @user.authenticate(params[:session][:password]))
+	if (@user && @user.active_status? && @user.authenticate(params[:session][:password]))
 		session[:user_id] = @user.id
 		redirect_to root_path
 	else
-		flash[:danger] = "Failed to log in with credentials provided."
+		flash[:error] = "Failed to log in with credentials provided."
 		redirect_to login_path
 	end
   end

@@ -18,7 +18,7 @@ Then(/^there should be form fields for (.*)$/) do |args|
 	end
 end
 
-When(/^submit the form filled in the (.*)$/) do |args|
+When(/^I submit the form filled in with (.*)$/) do |args|
 	args.split(', ').each do |arg|
 		field_params = arg.split('=')
 		field = field_params[0]
@@ -26,8 +26,4 @@ When(/^submit the form filled in the (.*)$/) do |args|
 		fill_in field.capitalize, :with=>value 
 	end
 	click_on "Sign up"
-end
-
-Then(/^I must successfully return to the login page$/) do
-	expect(page).to have_current_path(login_path, only_path: true)
 end
