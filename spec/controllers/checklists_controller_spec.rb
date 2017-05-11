@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe ChecklistsController, :type => :controller do
+	
 	context "with no user logged in" do
-		context "GET #new" do
+		describe "GET #new" do
 			it "redirects to login page" do
 				get :new
 				expect(controller).to_not receive(:new)
@@ -12,15 +13,17 @@ describe ChecklistsController, :type => :controller do
 	end
 
 	context "user logged in" do
-		let(:user){FactoryGirl.create(:user)}
+		let(:user){FactoryGirl.create(:user, :status => :active )}
 			
 		before do
 			session[:user_id] = user.id	
 		end
 		
-		context "GET #new" do
+		describe "GET #new" do
 			it "renders a page for new checklists creation" do
+				get :new
 				expect(response).to be_success
+				expect(response).to render_template("checklists/new")
 			end
 		end
 	
