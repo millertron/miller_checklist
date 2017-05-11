@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
 		if validate_user? @user
 			if @user.save
+				flash[:success] = "Your account has been created successfully. Please activate your account through the activation URL sent to your email."
 				redirect_to root_path
 				UserMailer.activation(@user).deliver_now
 			else

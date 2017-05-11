@@ -1,8 +1,4 @@
-<% if flash[:danger] %>
-	<div class="alert alert-danger">
-	  <strong>ERROR!</strong> <%= flash[:danger] %>
-	</div>
-<% end %>
+
 
 <%= form_for(:session, url: login_path) do |f| %>
 <div class="form-group">

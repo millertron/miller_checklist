@@ -20,6 +20,7 @@ Scenario: A guest should be able to successfully create a user account with vali
 	When I go to the sign up page
 	And submit the form filled in the username=username, first name=first, last name=last, email=address=user@email.com, password=password
 	Then I must successfully return to the login page
+	And I must see a success flash that says "Please activate your account"
 	
 	
 	

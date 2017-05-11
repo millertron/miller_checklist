@@ -59,19 +59,20 @@ ActiveRecord::Schema.define(version: 20170505091515) do
     t.datetime "implemented_date"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.         "implementor_id"
+    t.integer  "implementor_id"
     t.index ["checklist_id"], name: "index_implementations_on_checklist_id"
+    t.index ["implementor_id"], name: "index_implementations_on_implementor_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "api_key"
-    t.integer  "status",          default: 0
+    t.integer  "status"
     t.string   "email"
     t.string   "activation_code"
   end
