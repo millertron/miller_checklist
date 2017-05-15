@@ -55,6 +55,7 @@ group :development, :test do
   gem 'capybara', '~> 2.5'
   gem 'launchy', '~> 2.2.0'
   gem 'rails-controller-testing'
+  gem 'simplecov', :require => false, :group => :test
 end
 
 group :development do
