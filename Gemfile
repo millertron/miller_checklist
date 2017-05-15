@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 
+gem "figaro"
 
 #IMPORTANT FOR WINDOWS DEV!!!!!
 # run 'gem install bcrypt --platform=ruby' manually
