@@ -10,12 +10,8 @@ class Checklist < ApplicationRecord
 	
 	accepts_nested_attributes_for :checklist_items
 	
-	def is_implemented?
-		if implemented
-			return true
-		else
-			return false
-		end
+	def implemented?
+		@implemented || false
 	end
 	
 	def checklist_item

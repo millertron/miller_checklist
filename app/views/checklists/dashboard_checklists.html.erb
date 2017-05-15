@@ -1,6 +1,6 @@
 <% @dashboard_checklists.each do |c| %>
 	<div class="panel-body">
-		<% if c.is_implemented? %>
+		<% if c.implemented? %>
 			<button class="btn btn-success" disabled><%=c.name%><span class="glyphicon glyphicon-ok"></span></button>
 		<%else%>
 		<div class="dropdown">
