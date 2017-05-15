@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe API::V1::ChecklistsController, type: :controller do
 	let(:user) { FactoryGirl.create(:user) }

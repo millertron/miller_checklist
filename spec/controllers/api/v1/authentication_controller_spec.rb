@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe API::V1::AuthenticationController, type: :controller do
 	let (:user) {FactoryGirl.create(:user)}

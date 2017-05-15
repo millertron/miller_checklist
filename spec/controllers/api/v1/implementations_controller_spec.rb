@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe API::V1::ImplementationsController, type: :controller do
 	let(:user) { FactoryGirl.create(:user) }
