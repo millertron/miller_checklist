@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :require_null_user, :except => :destroy
+  
   def new
 	@login_page = true
   end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :require_null_user
+	
 	def new
 		@signup_page = true
 		@user = User.new

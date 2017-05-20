@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def require_user
 	redirect_to login_path unless current_user
   end
+  
+  def require_null_user
+	redirect_to root_path if current_user
+  end
 end
