@@ -27,12 +27,16 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 
+#use to manage environment variables via config/application.yml - use 'bundle exec figaro install' to initialize
 gem "figaro"
 
 #IMPORTANT FOR WINDOWS DEV!!!!!
 # run 'gem install bcrypt --platform=ruby' manually
 # every time bundle install is run, uninstall the version with x64 suffix
 gem 'bcrypt', '~> 3.1.11'
+
+#pundit for authorization - initialize with 'rails g pundit:install'
+gem 'pundit', '~> 1.1'
 
 gem 'active_model_serializers'
 
@@ -51,10 +55,13 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem "factory_girl_rails"
+  
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
+  
+  #used to make page navigation
   gem 'capybara', '~> 2.5'
-  gem 'launchy', '~> 2.2.0'
+  
   gem 'rails-controller-testing'
   gem 'simplecov', :require => false, :group => :test
 end
