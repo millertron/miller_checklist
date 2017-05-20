@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505091515) do
+ActiveRecord::Schema.define(version: 20170519081609) do
+
+  create_table "boguses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "checklist_items", force: :cascade do |t|
     t.integer  "checklist_id"
@@ -32,6 +37,11 @@ ActiveRecord::Schema.define(version: 20170505091515) do
     t.datetime "updated_at",  null: false
     t.string   "frequency"
     t.index ["owner_id"], name: "index_checklists_on_owner_id"
+  end
+
+  create_table "dice", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "form_options", force: :cascade do |t|
@@ -68,13 +78,14 @@ ActiveRecord::Schema.define(version: 20170505091515) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "password_digest"
     t.string   "api_key"
-    t.integer  "status"
+    t.integer  "status",          default: 0
     t.string   "email"
     t.string   "activation_code"
+    t.boolean  "admin"
   end
 
 end

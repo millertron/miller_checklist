@@ -12,9 +12,9 @@ describe ChecklistsController, :type => :controller do
 		end
 	end
 
-	context "user logged in" do
+	context "with user logged in" do
 		let(:user){FactoryGirl.create(:user, :status => :active )}
-			
+		let(:checklist){FactoryGirl.create(:checklist, :owner => :user)}
 		before do
 			session[:user_id] = user.id	
 		end
@@ -26,7 +26,26 @@ describe ChecklistsController, :type => :controller do
 				expect(response).to render_template("checklists/new")
 			end
 		end
-	
+		
+		
+		describe "GET #edit" do
+			let(:someone){FactoryGirl.create(:user, :status => :active )}
+			let(:checklist){FactoryGirl.create(:checklist, :owner => :someone)}
+		
+			context "a checklist that doesn't belong to me" do
+				it "should redirect me to error message page" do
+					#expect(controller).to_not receive(:edit)
+					#expect(response).to redirect_to error_path
+				end
+			end
+		end
+		
+		describe "POST #update" do
+			context "a checklist that doesn't belong to me" do
+			
+			end
+		end
+		
 	end
 	
 end
