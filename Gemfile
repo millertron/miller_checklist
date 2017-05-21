@@ -3,8 +3,11 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+group :production do
+  gem 'pg'
+end
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -33,7 +36,13 @@ gem "figaro"
 #IMPORTANT FOR WINDOWS DEV!!!!!
 # run 'gem install bcrypt --platform=ruby' manually
 # every time bundle install is run, uninstall the version with x64 suffix
-gem 'bcrypt', '~> 3.1.11'
+#gem 'bcrypt', '~> 3.1.11'
+gem 'bcrypt', '~> 3.1.10', require: false
+if Bundler::WINDOWS
+  gem 'bcrypt-ruby', '~> 3.0.0', require: false
+else
+  gem 'bcrypt', '~> 3.1.10', require: false
+end
 
 #pundit for authorization - initialize with 'rails g pundit:install'
 gem 'pundit', '~> 1.1'
@@ -46,6 +55,8 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'sqlite3'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   

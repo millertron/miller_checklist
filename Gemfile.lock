@@ -49,6 +49,7 @@ GEM
     autoprefixer-rails (6.5.4)
       execjs
     bcrypt (3.1.11-x64-mingw32)
+    bcrypt-ruby (3.0.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -134,6 +135,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
+    pg (0.19.0-x64-mingw32)
     public_suffix (2.0.5)
     puma (3.6.2)
     pundit (1.1.0)
@@ -240,7 +242,8 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
-  bcrypt (~> 3.1.11)
+  bcrypt (~> 3.1.10)
+  bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (~> 3.3, >= 3.3.7)
   byebug
   capybara (~> 2.5)
@@ -252,6 +255,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-bootstrap-rails-asset
+  pg
   puma (~> 3.0)
   pundit (~> 1.1)
   rails (~> 5.0.0, >= 5.0.0.1)
