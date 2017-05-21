@@ -25,9 +25,6 @@ test: &test
 production:
   <<: *default
   adapter: postgresql
-  database: <%= ENV['PROD_DB'] %>
-  username: <%= ENV['PROD_DB_USER'] %>
-  password: <%= ENV['PROD_DB_PASSWORD'] %>
 
 cucumber:
   <<: *test

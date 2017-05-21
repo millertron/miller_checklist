@@ -3,7 +3,7 @@ Given(/^I am logged in as (.*) with password (.*)$/) do |username, pass|
 	ensure_logout
 	
 	if User.find_by_username(username) == nil
-		FactoryGirl.create(:user, username: username, password: pass, password_confirmation: pass, status: :active)
+		FactoryGirl.create(:user, username: username, password: pass, status: :active)
 	end
 
 	do_login username, pass
