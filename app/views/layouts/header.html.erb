@@ -1,5 +1,5 @@
 
-<nav class="navbar-inverse">
+<nav class="navbar-inverse" id="header-nav">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<div class="navbar-brand">MUTEX</div>
@@ -9,13 +9,17 @@
 		
 			<ul class="nav navbar-nav">
 				<li><%= link_to "Dashboard", root_path %></li>
-				<li><%= link_to "Analytics", analytics_path %></li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown">Admin</a>
-					<ul class="dropdown-menu">
-					<li><%= link_to "Configure Form Options", form_options_path %></li>
-					</ul>
-				</li>
+				<%if policy(:navbar).analytics_enabled?%>
+					<li><%= link_to "Analytics", analytics_path %></li>
+				<%end%>
+				<%if policy(:navbar).admin?%>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">Admin</a>
+						<ul class="dropdown-menu">
+						<li><%= link_to "Configure Form Options", form_options_path %></li>
+						</ul>
+					</li>
+				<%end%>
 			</ul>
 		
 			<ul class="nav navbar-right navbar-nav">

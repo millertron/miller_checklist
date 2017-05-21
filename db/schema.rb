@@ -12,11 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170519081609) do
 
-  create_table "boguses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "checklist_items", force: :cascade do |t|
     t.integer  "checklist_id"
     t.string   "text"
@@ -37,11 +32,6 @@ ActiveRecord::Schema.define(version: 20170519081609) do
     t.datetime "updated_at",  null: false
     t.string   "frequency"
     t.index ["owner_id"], name: "index_checklists_on_owner_id"
-  end
-
-  create_table "dice", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "form_options", force: :cascade do |t|
