@@ -5,8 +5,7 @@
 			<div class="navbar-brand">MUTEX</div>
 		</div>
 	
-		<% unless @login_page %>
-		
+		<% if current_user %>		
 			<ul class="nav navbar-nav">
 				<li><%= link_to "Dashboard", root_path %></li>
 				<%if policy(:navbar).analytics_enabled?%>
@@ -21,15 +20,14 @@
 					</li>
 				<%end%>
 			</ul>
-		
-			<ul class="nav navbar-right navbar-nav">
-				<% if current_user %>
-					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
-				<% else %>
-					<li><%= link_to "Log in", login_path %></li>
-				<% end %>
-			</ul>
-		<% end %>
+		<%end%>
+		<ul class="nav navbar-right navbar-nav">
+			<% if current_user %>
+				<li><%= link_to "Log out", logout_path, method: "delete" %></li>
+			<% elsif !@login_page %>
+				<li><%= link_to "Log in", login_path %></li>
+			<% end %>
+		</ul>
 	</div>
 </nav>
 <div style="margin-bottom:50px"></div>
