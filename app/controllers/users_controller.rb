@@ -22,6 +22,22 @@ class UsersController < ApplicationController
 
 	end
 	
+	def index
+		@available_users = Users.where.not(:status, :archived)
+	end
+	
+	def load_archived
+		@archived_users = Users.where(:status, :archived)
+	end
+	
+	def edit
+	
+	end
+	
+	def update
+	
+	end
+	
 	def validate_user? (user)
 		@error_messages = Array.new
 		

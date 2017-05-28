@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 	
-	enum status: { preactive: 0, active: 1, archived: 2 }, _suffix: true
+	enum status: { preactive: 0, active: 1, locked: 2, archived: 3 }, _suffix: true
 	
 	before_create do |doc|
 		doc.status ||= :preactive
