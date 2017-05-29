@@ -1,7 +1,11 @@
 class UserPolicy < ApplicationPolicy
 
   def index?
-    user && user.admin?
+	user && user.admin?
+  end
+  
+  def edit?
+	user && user.admin?
   end
 
   class Scope < Scope

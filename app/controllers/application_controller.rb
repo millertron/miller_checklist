@@ -15,4 +15,12 @@ class ApplicationController < ActionController::Base
   def require_null_user
 	redirect_to root_path if current_user
   end
+  
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    render file: "unauthorized", status: :unauthorized
+  end
 end

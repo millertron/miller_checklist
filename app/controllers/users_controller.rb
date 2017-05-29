@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
-	before_action :require_null_user
+	
+	
+	def index
+		@available_users = User.where.not(status: :archived)
+		authorize @available_users
+	end
 	
 	def new
 		@signup_page = true
@@ -8,7 +13,6 @@ class UsersController < ApplicationController
 	
 	def create
 		@user = User.new(user_params)
-
 		if validate_user? @user
 			if @user.save
 				flash[:success] = "Your account has been created successfully. Please activate your account through the activation URL sent to your email."
@@ -20,10 +24,6 @@ class UsersController < ApplicationController
 			end
 		end
 
-	end
-	
-	def index
-		@available_users = Users.where.not(:status, :archived)
 	end
 	
 	def load_archived
