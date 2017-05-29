@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	
 	get '/signup', to: 'users#new'
 	resources :users
+	post '/users/:id/activate', to: "users#activate", as: :activate_user
 	
 	get '/form_options', to: 'form_options#index'
 	post '/form_options', to: 'form_options#create'

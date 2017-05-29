@@ -19,7 +19,11 @@ class User < ApplicationRecord
 	validates :last_name, presence: true
 	validates :username, presence: true, uniqueness: {case_sensitive: false}
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
-	validates :password, presence: true
+	validates :password, presence: true, :on => create
+	
+	def summary
+		"#{first_name} #{last_name} (#{username})"
+	end
 	
 	def generate_secure_token attribute 
 		loop do

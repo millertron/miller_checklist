@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		<% end %>
-		
-		<%= f.submit "Create Checklist", :class=>"btn btn-default"%>
+		<% button_text = @edit == true ? "Update Checklist" : "Create Checklist" %>
+		<%= f.submit button_text, :class=>"btn btn-default"%>
 	<% end %>
 </div>

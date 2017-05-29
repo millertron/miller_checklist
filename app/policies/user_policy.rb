@@ -4,13 +4,18 @@ class UserPolicy < ApplicationPolicy
 	user && user.admin?
   end
   
-  def edit?
+  def create?
+	user == nil || user.admin?
+  end
+    
+  def update?
 	user && (user.admin? || record == user)
   end
   
-  def new?
-	user == nil || user.admin?
+  def activate?
+	user && user.admin?
   end
+  
 
   class Scope < Scope
     def resolve

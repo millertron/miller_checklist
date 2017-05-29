@@ -1,1 +1,26 @@
-#users.index
+<script type="text/javascript">
+	$('.activate_user_button').bind('ajax:success', function() {  
+		console.log("FOO!");
+	});
+	$('.activate_user_button').bind('ajax:error', function() {
+		alert("Oops, something went wrong with the request.")
+	});
+	
+</script>
+
+<h2>User Admin</h2>
+<table class="table table-striped">
+<% @available_users.each do |user| %>
+	<tr>
+	<td><%= user.summary %></td>
+	<td><%= link_to "Edit", edit_user_path(user.id), :class => "btn btn-info" %></td>
+	<td><%if user.preactive_status?%><%=link_to "Activate", 
+					activate_user_path(:id => user.id),
+					remote: true,
+					method: :post,
+					:class=>"btn btn-success activate_user_button", 
+					data: {:confirm => "Are you sure?"} 
+				 %><%end%></td>
+	</tr>
+<% end %>
+</table>

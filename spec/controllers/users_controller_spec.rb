@@ -6,6 +6,7 @@ describe UsersController, :type => :controller do
 	let(:new_user_username){ "new_user_for_test" }
 	let(:new_user_params){ {user: {username: new_user_username, first_name: "First", last_name: "Last", email: "newtestuser@email.com", password: "password123"}} } 
 	
+	
 	context "when not logged in" do
 		describe "GET #new" do
 			before { get :new }
@@ -40,7 +41,7 @@ describe UsersController, :type => :controller do
 		end
 		
 		describe "GET #edit" do
-			before { get :index, params: {:id => other_user.id} }
+			before { get :edit, params: {:id => other_user.id} }
 			it "should return unauthorized response" do
 				expect(response).to render_template("unauthorized")
 			end
@@ -50,7 +51,13 @@ describe UsersController, :type => :controller do
 		end
 		
 		describe "POST #update" do
-		
+			before { post :update, params: {:id => other_user.id} }
+			it "should return unauthorized response" do
+				expect(response).to render_template("unauthorized")
+			end
+			it "should render unauthorized page" do
+				expect(response).to have_http_status(:unauthorized)
+			end
 		end
 		
 		describe "POST #destroy" do
@@ -86,7 +93,13 @@ describe UsersController, :type => :controller do
 			end
 			
 			describe "POST #create" do
-			
+				before { post :create, params: new_user_params }
+				it "should return unauthorized response" do
+					expect(response).to render_template("unauthorized")
+				end
+				it "should render unauthorized page" do
+					expect(response).to have_http_status(:unauthorized)
+				end
 			end
 			
 			context "GET #edit" do
@@ -111,7 +124,27 @@ describe UsersController, :type => :controller do
 			end
 			
 			describe "POST #update" do
-			
+				describe "myself" do
+					before do
+						post :update, params: {:id => user.id, :user => {:first_name => "newFirst"}} 
+					end
+					it "should return success" do
+						expect(response).to have_http_status(:ok)
+					end
+					it "should update user" do
+						user.reload
+						expect(user.first_name).to eq "newFirst"
+					end
+				end
+				describe "someone else" do
+					before { post :update, params: {id: other_user.id, :user => {:first_name => "newFirst"}} }
+					it "should return unauthorized response" do
+						expect(response).to render_template("unauthorized")
+					end
+					it "should render unauthorized page" do
+						expect(response).to have_http_status(:unauthorized)
+					end
+				end
 			end
 			
 			describe "POST #destroy" do

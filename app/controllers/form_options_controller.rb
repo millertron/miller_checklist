@@ -25,6 +25,7 @@ class FormOptionsController < ApplicationController
 	end
 	
 	def destroy
+		puts "destroy"
 		FormOption.find(params[:id]).destroy
 	end
 	

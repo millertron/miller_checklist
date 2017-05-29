@@ -1,2 +1,3 @@
 <h1>Edit Checklist for <%=@user.first_name%> <%=@user.last_name%></h1>
+<% @edit = true %>
 <%= render :file=>"checklists/checklist_form.html.erb" %>

@@ -1,1 +1,22 @@
-#edit
+<h2>Edit user</h2>
+
+<%= form_for(@user) do |f| %>
+<div class="form-group">
+	<%= f.label :username%><br/>
+	<%= f.text_field :username, :place_holder => "Username", :class => "input" %>
+</div>
+<div class="form-group">
+	<%= f.label :first_name%><br/>
+	<%= f.text_field :first_name, :place_holder => "First name", :class => "input" %>
+</div>
+<div class="form-group">
+	<%= f.label :last_name%><br/>
+	<%= f.text_field :last_name, :place_holder => "Last name", :class => "input" %>
+</div>
+<div class="form-group">
+	<%= f.label :email%><br/>
+	<%= @user.email %>
+</div>
+<%=f.submit "Update", :class=>"btn btn-info"%>
+
+<% end %>
