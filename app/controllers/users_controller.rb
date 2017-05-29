@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 	end
 	
 	def new
-		@signup_page = true
 		@user = User.new
+		authorize @user
 	end
 	
 	def create
@@ -31,7 +31,8 @@ class UsersController < ApplicationController
 	end
 	
 	def edit
-	
+		@user = User.find(params[:id])
+		authorize @user
 	end
 	
 	def update

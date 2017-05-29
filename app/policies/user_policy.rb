@@ -5,7 +5,11 @@ class UserPolicy < ApplicationPolicy
   end
   
   def edit?
-	user && user.admin?
+	user && (user.admin? || record == user)
+  end
+  
+  def new?
+	user == nil || user.admin?
   end
 
   class Scope < Scope

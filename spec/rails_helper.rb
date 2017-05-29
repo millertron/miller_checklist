@@ -16,15 +16,7 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-
-
 RSpec.configure do |config|
-
-
-	ENV["RAILS_ENV"] ||= 'test'
-	#ensure shared examples are loaded
-	Dir[File.dirname(__FILE__) + "/models/shared_examples/**/*.rb"].each {|f| require f }
-	Dir[File.dirname(__FILE__) + "/controllers/shared_examples/**/*.rb"].each {|f| require f }
 
   #config.infer_spec_type_from_file_location!
   # rspec-expectations config goes here. You can use an alternate
@@ -111,8 +103,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
-
-	
+	ENV["RAILS_ENV"] ||= 'test'
 	require File.expand_path("../../config/environment", __FILE__)
 	require 'rspec/rails'
 	require_relative '../factory_girl/factory_girl'
