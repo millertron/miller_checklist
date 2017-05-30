@@ -1,11 +1,10 @@
 <script type="text/javascript">
-	$('.activate_user_button').bind('ajax:success', function() {  
-		console.log("FOO!");
+	$( document ).on("turbolinks:load", function(){
+		$('.activate_user_button').bind('ajax:success', function(event) {  
+			console.log("FOO!");
+			$(this).fadeOut();
+		});
 	});
-	$('.activate_user_button').bind('ajax:error', function() {
-		alert("Oops, something went wrong with the request.")
-	});
-	
 </script>
 
 <h2>User Admin</h2>

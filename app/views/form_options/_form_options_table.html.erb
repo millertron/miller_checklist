@@ -1,7 +1,9 @@
 <script type="text/javascript">
-$('.delete_form_option_button').bind('ajax:success', function() {  
-        $(this).closest('tr').fadeOut();
-});
+	$( document ).on("turbolinks:load", function(){
+		$('.delete_form_option_button').bind('ajax:success', function() {  
+				$(this).closest('tr').fadeOut();
+		});
+	});
 </script>
 
 <% if @form_options && !@form_options.empty? %>
