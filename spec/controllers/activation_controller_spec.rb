@@ -37,7 +37,21 @@ RSpec.describe ActivationController, type: :controller do
 					expect(controller).to set_flash[:notice]
 				end
 			end
-			context " for archived user" do
+			context "for suspended (locked) user" do
+				before do
+					user.update_attribute(:status, :locked)
+					user.reload
+					@updated_at = user.updated_at
+					get "edit", params: {id: user.activation_code}
+				end
+				it "redirects to login page with error having changed nothing to suspended (locked) user" do
+					user.reload
+					expect(response).to redirect_to login_path
+					expect(user.updated_at).to eq @updated_at
+					expect(controller).to set_flash[:error]
+				end
+			end
+			context "for archived user" do
 				before do 
 					user.update_attribute(:status, :archived)
 					user.reload

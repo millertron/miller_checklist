@@ -1,7 +1,6 @@
 <script type="text/javascript">
 	$( document ).on("turbolinks:load", function(){
 		$('.activate_user_button').bind('ajax:success', function(event) {  
-			console.log("FOO!");
 			$(this).fadeOut();
 		});
 	});

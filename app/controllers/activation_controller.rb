@@ -11,6 +11,8 @@ class ActivationController < ApplicationController
 				flash[:success] = "#{user_details} has been successfully activated! Please log in to proceed."
 			when :active
 				flash[:notice] = "#{user_details} is already activated. Please log in to proceed."
+			when :locked
+				flash[:error] = "#{user_details} has been suspended. Please contact the site administrator."
 			when :archived
 				flash[:error] = "#{user_details} has been disabled. Please create a new account or log in with another."
 			end
