@@ -10,9 +10,7 @@ describe UsersController, :type => :controller do
 	context "when not logged in" do
 		describe "GET #new" do
 			before { get :new }
-			it "should return success" do
-				expect(response).to have_http_status(:ok)
-			end
+			it {should respond_with(:ok)}
 			it "should render sign-up page" do
 				expect(response).to render_template("new")
 			end
@@ -26,15 +24,13 @@ describe UsersController, :type => :controller do
 				expect(new_user.preactive_status?).to eq true
 			end
 			it "should redirect me to the login page" do
-				expect(response).to redirect_to root_path
+				expect(response).to redirect_to login_path
 			end
 		end
 		
 		describe "GET #index" do
 			before { get :index }
-			it "should return unauthorized response" do
-				expect(response).to have_http_status(:unauthorized)
-			end
+			it {should respond_with(:unauthorized)}
 			it "should render unauthorized page" do
 				expect(response).to render_template("unauthorized")
 			end
@@ -42,9 +38,7 @@ describe UsersController, :type => :controller do
 		
 		describe "GET #edit" do
 			before { get :edit, params: {:id => other_user.id} }
-			it "should return unauthorized response" do
-				expect(response).to have_http_status(:unauthorized)
-			end
+			it {should respond_with(:unauthorized)}
 			it "should render unauthorized page" do
 				expect(response).to render_template("unauthorized")
 			end
@@ -52,9 +46,7 @@ describe UsersController, :type => :controller do
 		
 		describe "POST #update" do
 			before { post :update, params: {:id => other_user.id} }
-			it "should return unauthorized response" do
-				expect(response).to have_http_status(:unauthorized)
-			end
+			it {should respond_with(:unauthorized)}
 			it "should render unauthorized page" do
 				expect(response).to render_template("unauthorized")
 			end
@@ -62,9 +54,7 @@ describe UsersController, :type => :controller do
 		
 		describe "POST #activate" do
 			before { post :activate, params: {:id => other_user.id} }
-			it "should return unauthorized response" do
-				expect(response).to have_http_status(:unauthorized)
-			end
+			it {should respond_with(:unauthorized)}
 		end
 		
 		describe "POST #destroy" do
@@ -81,9 +71,7 @@ describe UsersController, :type => :controller do
 			let(:user){ FactoryGirl.create(:user, :status => :active) }
 			describe "GET #index" do
 				before { get :index }
-				it "should return unauthorized response" do
-					expect(response).to have_http_status(:unauthorized)
-				end
+				it {should respond_with(:unauthorized)}
 				it "should render unauthorized page" do
 					expect(response).to render_template("unauthorized")
 				end
@@ -91,9 +79,7 @@ describe UsersController, :type => :controller do
 		
 			describe "GET #new" do
 				before { get :new }
-				it "should return unauthorized response" do
-					expect(response).to have_http_status(:unauthorized)
-				end
+				it {should respond_with(:unauthorized)}
 				it "should render unauthorized page" do
 					expect(response).to render_template("unauthorized")
 				end
@@ -101,9 +87,7 @@ describe UsersController, :type => :controller do
 			
 			describe "POST #create" do
 				before { post :create, params: new_user_params }
-				it "should return unauthorized response" do
-					expect(response).to have_http_status(:unauthorized)
-				end
+				it {should respond_with(:unauthorized)}
 				it "should render unauthorized page" do
 					expect(response).to render_template("unauthorized")
 				end
@@ -112,18 +96,14 @@ describe UsersController, :type => :controller do
 			context "GET #edit" do
 				describe "myself" do
 					before { get :edit, params: {:id => user.id} }
-					it "should return success" do
-						expect(response).to have_http_status(:ok)
-					end
+					it {should respond_with(:ok)}
 					it "should render edit page" do
 						expect(response).to render_template("edit")
 					end
 				end
 				describe "someone else" do
 					before { get :edit, params: {:id => other_user.id} }
-					it "should return unauthorized response" do
-						expect(response).to have_http_status(:unauthorized)
-					end
+					it {should respond_with(:unauthorized)}
 					it "should render unauthorized page" do
 						expect(response).to render_template("unauthorized")
 					end
@@ -135,9 +115,7 @@ describe UsersController, :type => :controller do
 					before do
 						post :update, params: {:id => user.id, :user => {:first_name => "newFirst"}} 
 					end
-					it "should return success" do
-						expect(response).to have_http_status(:ok)
-					end
+					it {should respond_with(:ok)}
 					it "should update user" do
 						user.reload
 						expect(user.first_name).to eq "newFirst"
@@ -145,9 +123,7 @@ describe UsersController, :type => :controller do
 				end
 				describe "someone else" do
 					before { post :update, params: {id: other_user.id, :user => {:first_name => "newFirst"}} }
-					it "should return unauthorized response" do
-						expect(response).to have_http_status(:unauthorized)
-					end
+					it {should respond_with(:unauthorized)}
 					it "should render unauthorized page" do
 						expect(response).to render_template("unauthorized")
 					end
@@ -157,15 +133,14 @@ describe UsersController, :type => :controller do
 			describe "POST #activate" do
 				describe "myself" do
 					before { post :activate, params: {:id => user.id} }
-					it "should return unauthorized response" do
-						expect(response).to have_http_status(:unauthorized)
-					end
+					it {should respond_with(:unauthorized)}
 				end
 				describe "someone else" do
 					before { post :activate, params: {:id => other_user.id} }
-					it "should return unauthorized response" do
-						expect(response).to have_http_status(:unauthorized)
-					end				
+					it {should respond_with(:unauthorized)}
+					it "should render unauthorized page" do
+						expect(response).to render_template("unauthorized")
+					end					
 				end
 			end
 			
@@ -178,9 +153,7 @@ describe UsersController, :type => :controller do
 			let(:user){ FactoryGirl.create(:user, :status => :active, :admin => true) }
 			describe "GET #index" do
 				before { get :index }
-				it "should return success" do
-					expect(response).to have_http_status(:ok)
-				end
+				it {should respond_with(:ok)}
 				it "should render index page" do
 					expect(response).to render_template("index")
 				end
@@ -201,18 +174,14 @@ describe UsersController, :type => :controller do
 			describe "GET #edit" do
 				describe "myself" do
 					before { get :edit, params: {:id => user.id} }
-					it "should return success" do
-						expect(response).to have_http_status(:ok)
-					end
+					it {should respond_with(:ok)}
 					it "should render edit page" do
 						expect(response).to render_template("edit")
 					end
 				end
 				describe "someone else" do
 					before { get :edit, params: {:id => other_user.id} }
-					it "should return success" do
-						expect(response).to have_http_status(:ok)
-					end
+					it {should respond_with(:ok)}
 					it "should render edit page" do
 						expect(response).to render_template("edit")
 					end
@@ -222,9 +191,7 @@ describe UsersController, :type => :controller do
 			describe "POST #activate" do
 				describe "myself" do
 					before { post :activate, params: {:id => user.id} }
-					it "should return success" do
-						expect(response).to have_http_status(:ok)
-					end
+					it {should respond_with(:ok)}
 					it "should set user status to active" do
 						user.reload
 						expect(user.status.to_sym).to eq :active
@@ -232,9 +199,7 @@ describe UsersController, :type => :controller do
 				end
 				describe "someone else" do
 					before { post :activate, params: {:id => other_user.id} }
-					it "should return success" do
-						expect(response).to have_http_status(:ok)
-					end
+					it {should respond_with(:ok)}
 					it "should set user status to active" do
 						other_user.reload
 						expect(other_user.status.to_sym).to eq :active

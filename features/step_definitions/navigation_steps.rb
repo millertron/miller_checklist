@@ -16,8 +16,8 @@ When(/^I go to the sign up page$/) do
 	click_on "Sign up!"
 end
 
-Then(/^I should end up at the dashboard$/) do
-	expect(page).to have_current_path(root_path, only_path: true)
+Then(/^I should end up at the checklist dashboard$/) do
+	expect(page).to have_current_path(checklists_path, only_path: true)
 end
 
 Then(/^I must end up at the login page$/) do

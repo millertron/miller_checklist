@@ -9,6 +9,8 @@ class API::V1::AuthenticationController < API::APIController
 				render json: "#{user_details} has not yet been activated. Please complete the activation process.", status: :unauthorized
 			when :active
 				render json: user, status: :ok
+			when :locked
+				render json: "#{user_details} has been suspended. Please contact the site administrator.", status: :unauthorized
 			when :archived
 				render json: "#{user_details} is no longer valid. Please create a new account or sign in with another.", status: :unauthorized
 			end

@@ -42,6 +42,17 @@ RSpec.describe API::V1::AuthenticationController, type: :controller do
 				
 			end
 			
+			context "for suspended(locked) user" do
+				before do
+					user.update_attribute(:status, :locked)
+					post "create", params: {}, format: :json
+				end
+				it {should respond_with(:unauthorized)}
+				it "should respond with a message that states user account 'has been suspended'" do
+					expect(response.body).to include "has been suspended."
+				end
+			end
+			
 			context "for archived user" do
 				before do
 					user.update_attribute(:status, :archived)

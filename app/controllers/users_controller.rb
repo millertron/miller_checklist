@@ -16,11 +16,11 @@ class UsersController < ApplicationController
 		authorize @user
 		if validate_user? @user
 			if @user.save
-				flash.now[:success] = "Your account has been created successfully. Please activate your account through the activation URL sent to your email."
-				redirect_to root_path
+				flash[:success] = "Your account has been created successfully. Please activate your account through the activation URL sent to your email."
+				redirect_to login_path
 				UserMailer.activation(@user).deliver_now
 			else
-				flash.now[:danger] = "Failed to create user. Please contact the site administrator."
+				flash[:danger] = "Failed to create user. Please contact the site administrator."
 				redirect_to signup_path
 			end
 		end
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 		end
 		
 		unless @error_messages.empty?
-			flash.now[:danger] = "There are errors with your submission: " << @error_messages.join("\n") 
+			flash[:danger] = "There are errors with your submission: " << @error_messages.join("\n") 
 			redirect_to signup_path
 			return false
 		end

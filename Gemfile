@@ -36,13 +36,7 @@ gem "figaro"
 #IMPORTANT FOR WINDOWS DEV!!!!!
 # run 'gem install bcrypt --platform=ruby' manually
 # every time bundle install is run, uninstall the version with x64 suffix
-#gem 'bcrypt', '~> 3.1.11'
-gem 'bcrypt', '~> 3.1.10', require: false
-if Bundler::WINDOWS
-  gem 'bcrypt-ruby', '~> 3.0.0', require: false
-else
-  gem 'bcrypt', '~> 3.1.10', require: false
-end
+gem 'bcrypt', '~> 3.1.11'
 
 #pundit for authorization - initialize with 'rails g pundit:install'
 gem 'pundit', '~> 1.1'
