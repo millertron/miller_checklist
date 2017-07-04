@@ -45,6 +45,8 @@ gem 'active_model_serializers'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
+gem 'whenever', :require => false
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
