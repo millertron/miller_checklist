@@ -17,6 +17,7 @@ class ImplementationsController < ApplicationController
 		@implementation.implemented_date = DateTime.now
 		@implementation.implementor = current_user
 		if @implementation.save
+			@implementation.notify_checklist
 			redirect_to root_path
 		end
 	end
