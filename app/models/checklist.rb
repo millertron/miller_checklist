@@ -18,4 +18,9 @@ class Checklist < ApplicationRecord
 		checklist_items.first if checklist_items
 	end
 
+	def update_last_implemented_date
+		last_implementation = Implementation.where(:checklist => self).last
+		self.update_attribute :last_implemented_date, last_implementation.implemented_date if last_implementation
+	end
+	
 end
