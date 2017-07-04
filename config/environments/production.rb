@@ -77,7 +77,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => ENV["PROD_URL"] }
   config.action_mailer.perform_deliveries = false
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
