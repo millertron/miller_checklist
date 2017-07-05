@@ -1,4 +1,6 @@
 class Implementation < ApplicationRecord
+	after_save :notify_checklist
+	
 	belongs_to :checklist
 	belongs_to :implementor, class_name: "User", required: false
 	has_many :implementation_items, inverse_of: :implementation
