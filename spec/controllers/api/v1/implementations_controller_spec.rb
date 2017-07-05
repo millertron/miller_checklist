@@ -19,20 +19,30 @@ describe API::V1::ImplementationsController, type: :controller do
 			
 			context "with valid implementation params" do
 			
-				it "successfully creates a checklist implementation" do
-					post :create, params: valid_params, format: :json
-				
-					expect(response).to have_http_status(:created)
+				context "if not implemented" do
+					it "successfully creates a checklist implementation" do
+						post :create, params: valid_params, format: :json
 					
+						expect(response).to have_http_status(:created)
+						
+					end
 				end
-				
-				it "returns ok if checklist was already implemented - does not create another" do
-					post :create, params: valid_params, format: :json 
-					post :create, params: valid_params, format: :json
-					
-					expect(response).to be_success
-					expect(response).to have_http_status(:ok)
-					expect(Implementation.all.size).to eq 1
+
+				context "if already implemented" do
+					it "returns ok - does not create another instance of implementation" do
+						post :create, params: valid_params, format: :json 
+						post :create, params: valid_params, format: :json
+						
+						expect(response).to be_success
+						expect(response).to have_http_status(:ok)
+						expect(Implementation.all.size).to eq 1
+					end
+						
+					it "ensures checklist\'s last implemented date is updated" do
+						post :create, params: valid_params, format: :json 
+						expect_any_instance_of(Implementation).to receive(:notify_checklist)
+						post :create, params: valid_params, format: :json
+					end
 				end
 			
 			end

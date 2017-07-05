@@ -20,6 +20,7 @@ class API::V1::ImplementationsController < API::APIController
 		implementation = Implementation.where(checklist_id: checklist.id, implemented_date: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month).last if checklist.frequency == "monthly"
 		
 		if implementation
+			implementation.notify_checklist
 			render json: implementation, status: :ok
 		else
 			implementation = Implementation.new(implementation_params)
