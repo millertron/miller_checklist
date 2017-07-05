@@ -26,19 +26,44 @@ describe API::V1::ChecklistsController, type: :controller do
 					expect(response.content_type).to eq Mime[:json]
 				end
 				
+				context "with no frequency params"
+				
 				it "returns only the user's checklists" do
-					my_checklist = FactoryGirl.create(:checklist, owner: user) 
-					other_guys_checklist = FactoryGirl.create(:checklist, owner: other_user)
+					my_daily_checklist = FactoryGirl.create(:checklist, owner: user, frequency: :daily) 
+					my_weekly_checklist = FactoryGirl.create(:checklist, owner: user, frequency: :weekly) 
+					other_guys_checklist = FactoryGirl.create(:checklist, owner: other_user, frequency: :daily)
 					get :index, params: user_params, format: :json
 					checklists = JSON.parse(response.body, {symbolize_names: true})
-					expect(checklists.size).to eq 1
-					expect(checklists[0][:id]).to eq my_checklist.id
-					expect(checklists[0][:description]).to eq my_checklist.description
-					expect(checklists[0][:frequency]).to eq my_checklist.frequency
+					expect(checklists.size).to eq 2
+					expect(checklists[0][:id]).to eq my_daily_checklist.id
+					expect(checklists[0][:description]).to eq my_daily_checklist.description
+					expect(checklists[0][:frequency]).to eq my_daily_checklist.frequency
 					expect(checklists[0][:owner_id]).to eq user.id
+					expect(checklists[1][:id]).to eq my_weekly_checklist.id
+					expect(checklists[1][:description]).to eq my_weekly_checklist.description
+					expect(checklists[1][:frequency]).to eq my_weekly_checklist.frequency
+					expect(checklists[1][:owner_id]).to eq user.id
 				end
+				
+				context "with a frequency param" do
+					it "returns only the user's checklist of the specified frequency" do
+						my_daily_checklist = FactoryGirl.create(:checklist, owner: user, frequency: :daily) 
+						my_weekly_checklist = FactoryGirl.create(:checklist, owner: user, frequency: :weekly) 
+						other_guys_checklist = FactoryGirl.create(:checklist, owner: other_user, frequency: :daily)
+						get :index, params: user_params.merge({frequency: :daily}), format: :json
+						checklists = JSON.parse(response.body, {symbolize_names: true})
+						expect(checklists.size).to eq 1
+						expect(checklists[0][:id]).to eq my_daily_checklist.id
+						expect(checklists[0][:description]).to eq my_daily_checklist.description
+						expect(checklists[0][:frequency]).to eq my_daily_checklist.frequency
+						expect(checklists[0][:owner_id]).to eq user.id
+					end
+					
+				end
+				
 			end
 		end
+		
 	
 	end
 	
